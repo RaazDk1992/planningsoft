@@ -5,5 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.default, name="revhome"),
-    path('reg/',views.registerPlan,name="registerplan")
+    path('reg/',views.registerPlan,name="registerplan"),
+    path('addfy/',views.addFY,name='addFy'),
+    path('addprojecttype/',views.addProjectType,name='projecttype'),
+    path('projectcategory/',views.addTypeOfProject,name='TypeOfProject')
 ]

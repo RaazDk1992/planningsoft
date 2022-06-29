@@ -56,9 +56,13 @@ def save_user_profile(sender, instance, **kwargs):
 class ProjectType(models.Model):
     type_ref = models.IntegerField()
     type = models.CharField(max_length=50)
+    type_en = models.CharField(max_length=100)
+    isActive = models.BooleanField(default=True)
 class TypeOfProject(models.Model):
     project_type_ref = models.IntegerField()
     type_description = models.CharField(max_length=40)
+    type_description_en = models.CharField(max_length=40)
+    isActive = models.BooleanField(default=True)
 class UnitOfWork(models.Model):
     unit_ref  = models.IntegerField()
     unit_name = models.CharField(max_length=20)
@@ -77,6 +81,7 @@ class YojanaDetails(models.Model):
     time_stamp = models.DateTimeField(auto_now=True)
 
 class committee(models.Model):
+    project_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
     chairperson_name = models.CharField(max_length=50)
     chairperson_citizen = models.CharField(max_length=50)
     memberone_name = models.CharField(max_length=50)
