@@ -66,11 +66,14 @@ class YojanaDetails(models.Model):
     prj_ref = models.CharField(max_length=40)
     prj_name = models.CharField(max_length=100)
     prj_tole = models.CharField(max_length=50)
-    prj_type = models.CharField(max_length=10)
+    prj_type = models.ForeignKey(ProjectType, on_delete=models.RESTRICT)
+    type_prj_ref = models.ForeignKey(TypeOfProject, on_delete=models.RESTRICT)
+    affected_people = models.IntegerField()
     prj_duration = models.FloatField()
     prj_estimate = models.FloatField()
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
+    time_stamp = models.DateTimeField(auto_now=True)
 
 class committee(models.Model):
     chairperson_name = models.CharField(max_length=50)
