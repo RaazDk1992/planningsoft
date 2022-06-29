@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>योजनाको प्रकृति</title>
+    <title>Dashboard</title>
 
     <!--
         <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"/>
@@ -60,30 +60,12 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">योजनाको प्रकृति</h1>
+                    <h1 class="h3 mb-4 text-gray-800">योजना दर्ता</h1>
 
 
                    <!-- MultiStep Form -->
 
-                   <form class="form form-horizontal" action="addfy" method="POST">
-                    {% csrf_token %}
-
-
-                    {% block content%}
-
-                    {% for field in form %}
-
-                    <div class="form-group">
-                        
-                        {{field.label_tag }}{{ field }}
-                    </div>
-
-                    {% endfor %}
-
-                {% endblock %}
-
-                <input type="submit" name="addFY" value="Go"/>
-                </form>
+                   
                     <!-- /.MultiStep Form -->
 
 
