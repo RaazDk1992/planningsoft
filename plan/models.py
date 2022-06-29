@@ -1,7 +1,3 @@
-from asyncio.windows_events import NULL
-from email.policy import default
-from operator import mod
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -11,6 +7,51 @@ from django.dispatch import receiver
 # Create your models here.
 def user_unicode_patch(self):
     return '%s %s' % (self.first_name, self.last_name)
+
+
+class Office(models.Model):
+    officeName = models.CharField(max_length = 200)
+    officeAddress = models.CharField(max_length = 100)
+    is_active = models.BooleanField(default=True)
+    def __str__(self):
+        return self.officeName
+        
+class Designation(models.Model):
+    designation = models.CharField(max_length=100)
+    designation_en = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    def __str__(self):
+        return self.designation
+class relmap(models.Model):
+    offRef = models.ForeignKey(Office, on_delete=models.RESTRICT)
+    uRef = models.OneToOneField(User,on_delete=models.RESTRICT)
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    desc = models.TextField(max_length=500, blank=True)
+    sanketNo = models.CharField(max_length=30, blank=True)
+    contactNo = models.CharField(max_length=13, blank=True)
+    is_active = models.BooleanField(default=False)
+
+class FY(models.Model):
+    fy = models.CharField(max_length=30)
+    fy_np = models.CharField(max_length=30)
+    isactive = models.BooleanField(default=True)
+    def __str__(self):
+        return self.fy_np
+    class Meta:
+        unique_together = ('fy', 'fy_np','isactive',)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
 
 class ProjectType(models.Model):
     type_ref = models.IntegerField()
