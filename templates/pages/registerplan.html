@@ -26,6 +26,8 @@
     
     <!-- Custom styles for this template-->
     <link href="{% static 'pages\\css\\sb-admin-2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pages\\css\\multi.css' %}" rel="stylesheet">
+
 
 </head>
 
@@ -56,25 +58,57 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
-                    <form class="form" action="addfy" method="POST">
-						{% csrf_token %}
+                   <!-- multistep form-->
 
 
-						{% block content%}
+                   <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="msform">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active">योजना विवरण</li>
+                                <li>उपभोक्ता समिति विवरण</li>
+                                <li>Account Setup</li>
+                            </ul>
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <h2 class="fs-title">Personal Details</h2>
+                                <h3 class="fs-subtitle">Tell us something more about you</h3>
+                                <input type="text" name="fname" placeholder="First Name"/>
+                                <input type="text" name="lname" placeholder="Last Name"/>
+                                <input type="text" name="phone" placeholder="Phone"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                            <fieldset>
+                                <h2 class="fs-title">Social Profiles</h2>
+                                <h3 class="fs-subtitle">Your presence on the social network</h3>
+                                <input type="text" name="twitter" placeholder="Twitter"/>
+                                <input type="text" name="facebook" placeholder="Facebook"/>
+                                <input type="text" name="gplus" placeholder="Google Plus"/>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                            <fieldset>
+                                <h2 class="fs-title">Create your account</h2>
+                                <h3 class="fs-subtitle">Fill in your credentials</h3>
+                                <input type="text" name="email" placeholder="Email"/>
+                                <input type="password" name="pass" placeholder="Password"/>
+                                <input type="password" name="cpass" placeholder="Confirm Password"/>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                            </fieldset>
+                        </form>
+                        <!-- link to designify.me code snippets -->
+                        
+                        <!-- /.link to designify.me code snippets -->
+                    </div>
+                </div>
+                <!-- /.MultiStep Form -->
 
-						{% for field in form %}
 
-						<div class="form-group">
-							
-							{{field.label_tag }}{{ field }}
-						</div>
+                   <!-- end of multistep-->
 
-						{% endfor %}
 
-					{% endblock %}
-
-					<input type="submit" name="addFY" value="Go"/>
-					</form>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -134,6 +168,7 @@
     <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
+    <script src="{% static 'pages\\js\\multistepformscript.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
