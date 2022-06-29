@@ -43,7 +43,6 @@ class YojanaRegForm(forms.ModelForm):
              'prj_duration',
              'prj_estimate', 
              'is_active' ,
-             'is_complete'
         ]
         labels  = {
              'fy_ref': 'आ.व',
@@ -56,7 +55,6 @@ class YojanaRegForm(forms.ModelForm):
              'prj_duration':'संचालन हुने समय',
              'prj_estimate' : 'लागत ', 
              'is_active': 'सक्िरय' ,
-             'is_complete':'समपन्न भएको'
         }
 
         widgets = {
