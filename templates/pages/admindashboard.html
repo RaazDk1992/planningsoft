@@ -26,7 +26,7 @@
     
     <!-- Custom styles for this template-->
     <link href="{% static 'pages\\css\\sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'pages\\css\\multi.css' %}" rel="stylesheet">
+    <link href="{% static 'pages\\css\\datatables.css' %}" rel="stylesheet">
 
     <style>
         
@@ -60,13 +60,39 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">योजना दर्ता</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
 
 
-                   <!-- MultiStep Form -->
+                   <!-- Content -->
 
+                   <table class="table table-bordered" id="project_lists_admin">
+                    <thead>
+                      <tr>
+                        <th>योजनाको नाम</th>
+                        <th>हर्नुहोस्</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
                    
-                    <!-- /.MultiStep Form -->
+                    <!-- /.Contents -->
 
 
                     <!-- end of multistep-->
@@ -131,9 +157,15 @@
     <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'pages\\js\\multistepformscript.js' %} "></script>
+    <script src="{% static 'pages\\js\\datatables.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
+
+<script>
+    $(document).ready( function () {
+    $('#project_lists_admin').DataTable();
+} );
+</script>
 
 </html>
