@@ -40,9 +40,14 @@ def registerPlan(request):
 def addFY(request):
     form = FYform()
     return render (request,'pages\\fymanagement.html',{'form':form})
+    
 def addProjectType(request):
-    form = ProjectTypesForms()
-    return render (request,'pages\\projecttype.html',{'form':form})
+        form = ProjectTypesForms()
+        if request.POST:
+           ptypef = ProjectTypesForms(request.POST)
+           if ptypef.is_valid():
+               ptypef.save()
+        return render (request,'pages\\projecttype.html',{'form':form})
 def addTypeOfProject(request):
     form  = TypeOfProjectForm()
     return render (request,'pages\\typeofProject.html',{'form':form})
