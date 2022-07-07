@@ -13,7 +13,7 @@ def adminDashBoard(request):
     return render(request,'pages\\admindashboard.html') 
 
 def default(request):
-   
+    """
     r = requests.get(
             "http://api.sparrowsms.com/v2/sms/",
             params={'token' : 'v2_hUlUgdGo3G5CnSXjGENwguXBbWQ.UGCu',
@@ -22,7 +22,9 @@ def default(request):
                   'text'  : 'SMS Message to be sent'})
 
     status_code = r.status_code
-    response = r.text
+    response = r.text 
+    """
+
     return render(request,'login\\index.html',{'r':'apple'}) 
 
 
@@ -49,6 +51,8 @@ def addFY(request):
     form = FYform()
     return render (request,'pages\\fymanagement.html',{'form':form})
     
+def addStaff(request):
+    return render(request,'pages\\adduser.html')
 def addProjectType(request):
         form = ProjectTypesForms()
         if request.POST:

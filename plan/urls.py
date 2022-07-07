@@ -11,5 +11,6 @@ urlpatterns = [
     path('addfy/',views.addFY,name='addFy'),
     path('addprojecttype/',views.addProjectType,name='projecttype'),
     path('projectcategory/',views.addTypeOfProject,name='TypeOfProject'),
-    path('admindashboard/',views.adminDashBoard,name='admindashboard')
+    path('admindashboard/',views.adminDashBoard,name='admindashboard'),
+    path('adduser/',views.addStaff,name="adduser")
 ]
