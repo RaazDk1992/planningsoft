@@ -3,7 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import FYform,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, YojanaDetails
 
 # Create your views here.
@@ -53,6 +53,14 @@ def addFY(request):
     
 def addStaff(request):
     return render(request,'pages\\adduser.html')
+
+def addOffice(request):
+      of = OfficeForm()
+      if request.POST:
+        oform = OfficeForm(request.POST)
+        if oform.is_valid:
+            oform.save()
+      return render(request,'pages\\addoffice.html',{'form':of})        
 def addProjectType(request):
         form = ProjectTypesForms()
         if request.POST:

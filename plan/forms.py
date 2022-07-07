@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY,YojanaDetails,ProjectType,TypeOfProject
+from .models import FY,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
 
@@ -27,6 +27,29 @@ class FYform(forms.ModelForm):
             'fy_np': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Fiscal Year in Nepali '
+            }),
+        }
+
+class OfficeForm(forms.ModelForm):
+    class Meta:
+        model = Office
+        fields = [
+            'officeName',
+            'officeAddress'
+        ]
+        labels  = {
+        'officeName':'कार्यालयको नाम ', 
+        'officeAddress':'ठेगाना '
+       
+        }
+        widgets = {
+            'officeName': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'कार्यालयको नाम '
+            }),
+            'officeAddress': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'ठेगाना'
             }),
         }
 

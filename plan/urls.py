@@ -12,5 +12,6 @@ urlpatterns = [
     path('addprojecttype/',views.addProjectType,name='projecttype'),
     path('projectcategory/',views.addTypeOfProject,name='TypeOfProject'),
     path('admindashboard/',views.adminDashBoard,name='admindashboard'),
-    path('adduser/',views.addStaff,name="adduser")
+    path('adduser/',views.addStaff,name="adduser"),
+    path('addoffice/',views.addOffice,name="addoffice")
 ]
