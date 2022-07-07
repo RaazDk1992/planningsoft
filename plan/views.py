@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth 
 from django.contrib.auth import authenticate,login
-
+import requests
+import logging
 from .forms import FYform,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, YojanaDetails
 
@@ -12,7 +13,17 @@ def adminDashBoard(request):
     return render(request,'pages\\admindashboard.html') 
 
 def default(request):
-    return render(request,'login\\index.html') 
+   
+    r = requests.get(
+            "http://api.sparrowsms.com/v2/sms/",
+            params={'token' : 'v2_hUlUgdGo3G5CnSXjGENwguXBbWQ.UGCu',
+                  'from'  : 'LekbeshiMun',
+                  'to'    : '9848288339',
+                  'text'  : 'SMS Message to be sent'})
+
+    status_code = r.status_code
+    response = r.text
+    return render(request,'login\\index.html',{'r':'apple'}) 
 
 
 def verification(request):
@@ -28,9 +39,6 @@ def verification(request):
             return redirect('admindashboard')
         else:
             return redirect('default')
-
-def default(request):
-    return render(request,'login\\index.html') 
 
     
 def registerPlan(request):
