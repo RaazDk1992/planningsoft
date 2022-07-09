@@ -117,6 +117,7 @@ class YojanaDetails(models.Model):
     prj_completion_date_en = models.DateField(default=timezone.now())
     is_multiyear = models.BooleanField(default=False)
     prj_estimate = models.FloatField()
+    estimate_in_letters = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
