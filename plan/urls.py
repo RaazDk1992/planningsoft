@@ -15,7 +15,8 @@ urlpatterns = [
     path('adduser/',views.addStaff,name="adduser"),
     path('addoffice/',views.addOffice,name="addoffice"),
     path('comittee/',views.Comittee,name="comittee"),
-    path('ward/',views.addWard,name="ward")
+    path('ward/',views.addWard,name="ward"),
+    path('sectors/',views.sectors,name="sectors")
 
 
 ]

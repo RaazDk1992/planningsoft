@@ -106,6 +106,7 @@ class YojanaDetails(models.Model):
     prj_name = models.CharField(max_length=100)
     area_ref = models.ForeignKey(Woda,on_delete=models.RESTRICT)
     prj_tole = models.CharField(max_length=50)
+    sector_ref = models.ForeignKey(MajorSector,on_delete=models.RESTRICT)
     prj_type = models.ForeignKey(ProjectType, on_delete=models.RESTRICT)
     type_prj_ref = models.ForeignKey(TypeOfProject, on_delete=models.RESTRICT)
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)

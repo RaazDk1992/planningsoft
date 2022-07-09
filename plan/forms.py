@@ -215,6 +215,7 @@ class YojanaRegForm(forms.ModelForm):
              'prj_name' ,
              'area_ref',
              'prj_tole',
+             'sector_ref',
              'prj_type',
              'type_prj_ref',
              'prj_start_date',
@@ -232,6 +233,7 @@ class YojanaRegForm(forms.ModelForm):
              'prj_name': 'योजनाको नाम' ,
              'area_ref':'वडा नं',
              'prj_tole': 'योजना संचालन हुने स्थान',
+             'sector_ref':'क्षेत्र',
              'prj_type':'योजनाको प्रकार',
              'type_prj_ref':'योजनाको प्रकृति',
              'prj_start_date':'योजना सुरु हुने मिति',
@@ -257,6 +259,7 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'संचालन हुने स्थान'
             }),
+            'sector_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_start_date': forms.TextInput(attrs={

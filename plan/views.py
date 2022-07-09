@@ -86,7 +86,7 @@ def sectors(request):
         sf = MajorSectorsForm(request.POST)
         if sf.is_valid:
             sf.save()
-    return render (request,'pages\\fymanagement.html',{'form':form})
+    return render (request,'pages\\sectors.html',{'form':form})
 
 
 def addWard(request):
