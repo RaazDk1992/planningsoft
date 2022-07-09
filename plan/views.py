@@ -69,7 +69,9 @@ def registerPlan(request):
     if request.POST:
         yf = YojanaRegForm(request.POST)
         if yf.is_valid:
-            yf.save()
+            f = yf.save()
+            request.session['project_code'] = f.pk
+            return redirect('comittee')
     return render (request,'pages\\registerplan.html',{'form':form})
 
 def addFY(request):
@@ -129,12 +131,18 @@ def addDoc(request):
 
 
 def Comittee(request):
-    cf = CommitteeForm()
-    if request.POST:
-        cform = CommitteeForm(request.POST)
-        if cform.is_valid:
-            cform.save()
-    return render(request,'pages\\comittee.html',{'form':cf})        
+    
+    if request.session.has_key('project_code'):
+        code = request.session['project_code']
+        cf = CommitteeForm(initial={'project_ref':code})
+        #print(username)
+        if request.POST:
+            cform = CommitteeForm(request.POST)
+            if cform.is_valid:
+                c = cform.save()
+                request.session['commitee_ref'] = c.pk
+                return redirect('')
+        return render(request,'pages\\comittee.html',{'form':cf})        
 
 
 def addOffice(request):

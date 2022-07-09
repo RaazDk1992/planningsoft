@@ -91,7 +91,7 @@ class CommitteeForm(forms.ModelForm):
         'comittee_address':'ठेगाना'
         }
         widgets = {
-             'project_ref': forms.TextInput(attrs={
+             'project_ref': forms.HiddenInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':''
             }),
