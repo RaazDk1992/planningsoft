@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, Doc, MajorSector, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, ComitteeMembers, Doc, MajorSector, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
@@ -301,5 +301,48 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'लागत रु ',
                 'id':'amt_ltrs'
+            }),
+        }
+class ComitteeMembersForm(forms.ModelForm):
+    class Meta:
+        model = ComitteeMembers
+        fields = [
+            'comittee_ref',
+            'project_ref',
+            'member_name',
+            'member_designation',
+            'member_citizen',
+            'member_citizen_img',
+            'member_image'
+        ]
+        labels  = {
+            'member_name': 'नाम',
+            'member_designation' : 'पद',
+            'member_citizen':'नागरिकता नं',
+            'member_citizen_img':'नागरिकता',
+            'member_image':'फोटो'
+        }
+        widgets = {
+            'comittee_ref':forms.HiddenInput(attrs={'class':'form-control col-sm-6'}),
+            'project_ref':forms.HiddenInput(attrs={'class':'form-control col-sm-6'}),
+            'member_name': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'नाम '
+            }),
+            'member_designation': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Project Category in english '
+            }),
+            'member_citizen': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Project Category in english '
+            }),
+            'member_citizen_img': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Project Category in english '
+            }),
+            'member_image': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Project Category in english '
             }),
         }

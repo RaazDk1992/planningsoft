@@ -146,6 +146,5 @@ class ComitteeMembers(models.Model):
     member_designation = models.ForeignKey(Designation,on_delete=models.RESTRICT)
     member_citizen = models.CharField(max_length=50)
     member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
     member_image = models.ImageField(upload_to = 'path',default='default.jpg')
 
