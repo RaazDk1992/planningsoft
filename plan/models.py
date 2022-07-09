@@ -80,17 +80,29 @@ class UnitOfWork(models.Model):
 class ResponsibleGroup(models.Model):
     group_type = models.CharField(max_length=100)
     group_type_en = models.CharField(max_length=100)
+    def __str__(self):
+        return self.group_type
 
-
+class Woda(models.Model):
+    woda = models.CharField(max_length=3)
+    is_active = models.BooleanField(default=True)
+    def __str__(self):
+        return self.woda
 class YojanaDetails(models.Model):
     prj_ref = models.CharField(max_length=40)
     prj_name = models.CharField(max_length=100)
+    area_ref = models.ForeignKey(Woda,on_delete=models.RESTRICT)
     prj_tole = models.CharField(max_length=50)
     prj_type = models.ForeignKey(ProjectType, on_delete=models.RESTRICT)
     type_prj_ref = models.ForeignKey(TypeOfProject, on_delete=models.RESTRICT)
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)
     affected_people = models.IntegerField()
-    prj_duration = models.FloatField()
+    prj_start_date = models.CharField(max_length=80)
+    prj_start_date_en = models.DateField()
+    prj_completion_date = models.CharField(max_length=80)
+    prj_completion_date_en = models.DateField()
+    is_multiyear = models.BooleanField(default=False)
+
     prj_estimate = models.FloatField()
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)

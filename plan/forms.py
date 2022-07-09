@@ -168,6 +168,7 @@ class YojanaRegForm(forms.ModelForm):
              'fy_ref',
              'prj_ref',
              'prj_name' ,
+             'area_ref',
              'prj_tole',
              'prj_type',
              'type_prj_ref',
@@ -180,6 +181,7 @@ class YojanaRegForm(forms.ModelForm):
              'fy_ref': 'आ.व',
              'prj_ref': 'योजना कोड',
              'prj_name': 'योजनाको नाम' ,
+             'area_ref':'वडा नं',
              'prj_tole': 'योजना संचालन हुने स्थान',
              'prj_type':'योजनाको प्रकार',
              'type_prj_ref':'योजनाको प्रकृति',
@@ -190,7 +192,7 @@ class YojanaRegForm(forms.ModelForm):
         }
 
         widgets = {
-            'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
+            'fy_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_ref':forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Project code'
@@ -199,6 +201,7 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':' योजनाको नाम'
             }),
+            'area_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
              'prj_tole':forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'संचालन हुने स्थान'

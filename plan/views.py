@@ -3,7 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import DocForm, FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import CommitteeForm, DocForm, FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, Office
 from docxtpl import DocxTemplate
 
@@ -91,7 +91,14 @@ def addDoc(request):
     return render(request,'pages\\adoc.html',{'form':docForm})
 
 
-        
+def Comittee(request):
+    cf = CommitteeForm()
+    if request.POST:
+        cform = CommitteeForm(request.POST)
+        if cform.is_valid:
+            cform.save()
+    return render(request,'pages\\comittee.html',{'form':cf})        
+
 
 def addOffice(request):
       of = OfficeForm()
