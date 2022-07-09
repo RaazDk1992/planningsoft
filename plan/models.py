@@ -98,9 +98,9 @@ class YojanaDetails(models.Model):
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)
     affected_people = models.IntegerField()
     prj_start_date = models.CharField(max_length=80)
-    prj_start_date_en = models.DateField()
+    prj_start_date_en = models.DateField(auto_now=True)
     prj_completion_date = models.CharField(max_length=80)
-    prj_completion_date_en = models.DateField()
+    prj_completion_date_en = models.DateField(auto_now=True)
     is_multiyear = models.BooleanField(default=False)
 
     prj_estimate = models.FloatField()

@@ -173,7 +173,6 @@ class YojanaRegForm(forms.ModelForm):
              'prj_type',
              'type_prj_ref',
              'affected_people',
-             'prj_duration',
              'prj_estimate', 
              'is_active' ,
         ]
@@ -186,7 +185,6 @@ class YojanaRegForm(forms.ModelForm):
              'prj_type':'योजनाको प्रकार',
              'type_prj_ref':'योजनाको प्रकृति',
              'affected_people': 'लाभान्वित जनसंख्या',
-             'prj_duration':'संचालन हुने समय',
              'prj_estimate' : 'लागत ', 
              'is_active': 'सक्िरय' ,
         }
@@ -215,10 +213,6 @@ class YojanaRegForm(forms.ModelForm):
             'affected_people': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या'
-            }),
-            'prj_duration': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'योजना संचालन हुने अवधि'
             }),
             'prj_estimate': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
