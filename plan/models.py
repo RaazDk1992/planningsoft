@@ -60,7 +60,16 @@ class Doc(models.Model):
     doc_name = models.CharField(max_length=100)
     doc_body = models.TextField(max_length=2000)
     is_active = models.BooleanField(default=True)
+
+class MajorSector(models.Model):
+    section = models.CharField(max_length=30)
+    section_en = models.CharField(max_length=30)
+    is_active = models.BooleanField(default=True)
+    def __str__(self):
+        return self.section
+
 class ProjectType(models.Model):
+    sector_ref = models.ForeignKey(MajorSector,on_delete=models.RESTRICT)
     type = models.CharField(max_length=50)
     type_en = models.CharField(max_length=100)
     isActive = models.BooleanField(default=True)
@@ -89,6 +98,9 @@ class Woda(models.Model):
     is_active = models.BooleanField(default=True)
     def __str__(self):
         return self.woda
+
+
+
 class YojanaDetails(models.Model):
     prj_ref = models.CharField(max_length=40)
     prj_name = models.CharField(max_length=100)

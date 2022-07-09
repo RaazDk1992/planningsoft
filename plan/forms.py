@@ -36,12 +36,12 @@ class WodaForm(forms.ModelForm):
         model = Woda
         fields = [
             'woda',
-            'isactive'
+            'is_active'
         ]
         labels  = {
         'woda':'वडा नं', 
        
-        'isActive':'सक्रिय'
+        'is_active':'सक्रिय'
         }
         widgets = {
             'woda': forms.TextInput(attrs={

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import CommitteeForm, DocForm, FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import CommitteeForm, DocForm, FYform, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, Office, count
 from docxtpl import DocxTemplate
 
@@ -65,6 +65,11 @@ def registerPlan(request):
          code = fy.fy_np+'/'+str(0)
 
     form  = YojanaRegForm(initial={'prj_ref':code})
+
+    if request.POST:
+        yf = YojanaRegForm(request.POST)
+        if yf.is_valid:
+            yf.save()
     return render (request,'pages\\registerplan.html',{'form':form})
 
 def addFY(request):
@@ -75,6 +80,15 @@ def addFY(request):
             fyf.save()
 
     return render (request,'pages\\fymanagement.html',{'form':form})
+
+def addWard(request):
+    form = WodaForm()
+    if request.POST:
+        wf = WodaForm(request.POST)
+        if wf.is_valid:
+            wf.save()
+    return render (request,'pages\\wardno.html',{'form':form})
+
     
 def addStaff(request):
     org_ref = Office.objects.all()
