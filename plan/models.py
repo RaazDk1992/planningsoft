@@ -77,6 +77,11 @@ class UnitOfWork(models.Model):
     unit_name_en = models.CharField(max_length=20)
     def __str__(self):
         return self.unit_name
+class ResponsibleGroup(models.Model):
+    group_type = models.CharField(max_length=100)
+    group_type_en = models.CharField(max_length=100)
+
+
 class YojanaDetails(models.Model):
     prj_ref = models.CharField(max_length=40)
     prj_name = models.CharField(max_length=100)
@@ -92,8 +97,20 @@ class YojanaDetails(models.Model):
     time_stamp = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.prj_name
+class count(models.Model):
+    fy_ref = models.ForeignKey(FY,on_delete = models.RESTRICT)
+    count = models.IntegerField()
+    count_np = models.CharField(max_length=10)
+    def __str__(self):
+        return self.count
+class Comittee(models.Model):
+    comittee_name = models.CharField(max_length=200)
+    comittee_name_en = models.CharField(max_length=200)
+    comittee_address = models.CharField(max_length=100)
 
-class committee(models.Model):
+
+class ComitteeMembers(models.Model):
+    comittee_ref = models.ForeignKey(Comittee,on_delete=models.RESTRICT)
     project_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
     chairperson_name = models.CharField(max_length=50)
     chairperson_citizen = models.CharField(max_length=50)
