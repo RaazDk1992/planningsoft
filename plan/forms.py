@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Doc,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, Doc,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
@@ -31,6 +31,39 @@ class FYform(forms.ModelForm):
                 'placeholder':'Fiscal Year in Nepali '
             }),
         }
+
+class CommitteeForm(forms.ModelForm):
+     class Meta:
+        model = Comittee
+        fields = [
+            'comittee_name',
+            'comittee_name_en',
+            'comittee_address',
+            'black_listed'
+        ]
+        labels  = {
+        'comittee_name':' समिति/ निर्माण ब्यवसायीको नाम ', 
+        'comittee_name_en':'समिति/ निर्माण ब्यवसायीको नाम अङ्ग्रेजीमा', 
+        'comittee_address':'ठेगाना',
+        'black_listed':'कालो सूचिमा राख्नुहोस'
+        }
+        widgets = {
+            'comittee_name': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
+            'comittee_name_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':' '
+            }),
+            'comittee_address': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Fiscal Year in Nepali '
+            }),
+            
+        }
+
+
 
 class OfficeForm(forms.ModelForm):
     class Meta:

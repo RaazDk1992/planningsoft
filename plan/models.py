@@ -107,6 +107,7 @@ class Comittee(models.Model):
     comittee_name = models.CharField(max_length=200)
     comittee_name_en = models.CharField(max_length=200)
     comittee_address = models.CharField(max_length=100)
+    black_listed = models.BooleanField(default=False)
 
 
 class ComitteeMembers(models.Model):
