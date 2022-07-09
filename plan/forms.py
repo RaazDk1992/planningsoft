@@ -78,18 +78,23 @@ class CommitteeForm(forms.ModelForm):
      class Meta:
         model = Comittee
         fields = [
+            'project_ref',
             'comittee_name',
             'comittee_name_en',
             'comittee_address',
-            'black_listed'
+            
         ]
         labels  = {
+        'project_ref': 'आयोजना संकेत',
         'comittee_name':' समिति/ निर्माण ब्यवसायीको नाम ', 
         'comittee_name_en':'समिति/ निर्माण ब्यवसायीको नाम अङ्ग्रेजीमा', 
-        'comittee_address':'ठेगाना',
-        'black_listed':'कालो सूचिमा राख्नुहोस'
+        'comittee_address':'ठेगाना'
         }
         widgets = {
+             'project_ref': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
             'comittee_name': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':''
@@ -289,10 +294,12 @@ class YojanaRegForm(forms.ModelForm):
             }),
             'prj_estimate': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'लागत रु '
+                'placeholder':'लागत रु ',
+                'id':'amt_number'
             }),
             'estimate_in_letters': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'लागत रु '
+                'placeholder':'लागत रु ',
+                'id':'amt_ltrs'
             }),
         }

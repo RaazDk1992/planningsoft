@@ -61,7 +61,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">योजना दर्ता</h1>
-
+                   
 
                    <!-- MultiStep Form -->
 
@@ -150,8 +150,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'datepicker\\nepaliDatePicker.min.js' %} "></script>
-    <script src="{% static 'converter\\digit.js' %} "></script>
-    <script src="{% static 'converter\\prototypes.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
@@ -194,7 +192,28 @@ yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
      $("#prj_complete_en").val(date_en.getFullYear()+"-"+mme+"-"+date_en.getDate())
                                                 });
 
+
+    $("#amt_number").focusout(function(e){
+
+        v = inWords($("#amt_number").val());
+        $("#amt_ltrs").val('रु. '+v+" मात्र /-")
     });
 
-    
+    });
+
+    function inWords (num) {
+
+var ax = ['','एक ','दुई ','तीन ','चार ', 'पाँच ','छ ','सात ','आठ ','नौ ','दश ','एघार ','बाह्र ','तेह्र ','चौध ','पन्ध्र ','सोह्र ','सत्र ','अठार ','उन्नाइस '];
+var b = ['', '', 'वीस','तीस','चालिस','पचास', 'साठ्ठी','सत्तरी','असी','नब्वे'];
+
+if ((num = num.toString()).length > 9) return 'overflow';
+n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+if (!n) return; var str = '';
+str += (n[1] != 0) ? (ax[Number(n[1])] || b[n[1][0]] + ' ' + ax[n[1][1]]) + 'करोड ' : '';
+str += (n[2] != 0) ? (ax[Number(n[2])] || b[n[2][0]] + ' ' + ax[n[2][1]]) + 'लाख ' : '';
+str += (n[3] != 0) ? (ax[Number(n[3])] || b[n[3][0]] + ' ' + ax[n[3][1]]) + 'हजार ' : '';
+str += (n[4] != 0) ? (ax[Number(n[4])] || b[n[4][0]] + ' ' + ax[n[4][1]]) + 'सय ' : '';
+str += (n[5] != 0) ? ((str != '') ? '' : '') + (ax[Number(n[5])] || b[n[5][0]] + ' ' + ax[n[5][1]]) + '' : '';
+return str;
+}
 </script>

@@ -130,6 +130,8 @@ class count(models.Model):
     def __str__(self):
         return self.count
 class Comittee(models.Model):
+
+    project_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
     comittee_name = models.CharField(max_length=200)
     comittee_name_en = models.CharField(max_length=200)
     comittee_address = models.CharField(max_length=100)
