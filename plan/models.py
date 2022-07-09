@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 # Create your models here.
 def user_unicode_patch(self):
     return '%s %s' % (self.first_name, self.last_name)
@@ -22,16 +23,16 @@ class Designation(models.Model):
     is_active = models.BooleanField(default=True)
     def __str__(self):
         return self.designation
-class relmap(models.Model):
-    offRef = models.ForeignKey(Office, on_delete=models.RESTRICT)
-    uRef = models.OneToOneField(User,on_delete=models.RESTRICT)
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    desc = models.TextField(max_length=500, blank=True)
     sanketNo = models.CharField(max_length=30, blank=True)
     contactNo = models.CharField(max_length=13, blank=True)
     is_active = models.BooleanField(default=False)
+
+class relmap(models.Model):
+    offRef = models.ForeignKey(Office, on_delete=models.RESTRICT)
+    uRef = models.OneToOneField(User,on_delete=models.RESTRICT)
 
 class FY(models.Model):
     fy = models.CharField(max_length=30)
@@ -52,7 +53,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-
+class Doc(models.Model):
+    doc_name = models.CharField(max_length=100)
+    doc_body = models.TextField(max_length=2000)
+    is_active = models.BooleanField(default=True)
 class ProjectType(models.Model):
     type = models.CharField(max_length=50)
     type_en = models.CharField(max_length=100)

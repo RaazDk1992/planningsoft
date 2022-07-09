@@ -1,9 +1,11 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Doc,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
+from django_summernote.widgets import SummernoteWidget
+
 
 
 class FYform(forms.ModelForm):
@@ -50,6 +52,30 @@ class OfficeForm(forms.ModelForm):
             'officeAddress': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'ठेगाना'
+            }),
+        }
+class DocForm(forms.ModelForm):
+     class Meta:
+        model = Doc
+        fields = [
+            'doc_name',
+            'doc_body',
+            'is_active'
+        ]
+        labels  = {
+        'doc_name':' नाम ', 
+        'doc_body':'ब्यहोरा ',
+        'is_active':'सक्रिय'
+       
+        }
+        widgets = {
+            'doc_name': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'शिर्षक '
+            }),
+            'doc_body': SummernoteWidget(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'शिर्षक ',
             }),
         }
 

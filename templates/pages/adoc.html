@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>कर्मचारी थप</title>
+    <title>कार्यालय थप</title>
 
     <!--
         <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"/>
@@ -26,7 +26,7 @@
     
     <!-- Custom styles for this template-->
     <link href="{% static 'pages\\css\\sb-admin-2.min.css' %}" rel="stylesheet">
-    
+    <link href="{% static 'wysgi\\css\\editor.css' %}" rel="stylesheet">
 
     <style>
         
@@ -60,7 +60,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">कर्मचारी थप</h1>
+                    <h1 class="h3 mb-4 text-gray-800">योजना</h1>
 
 
                    <!-- MultiStep Form -->
@@ -68,36 +68,7 @@
                    <form class="form form-horizontal" action="?" method="POST">
                     {% csrf_token %}
 
-                    <div class="form-group col-sm-6">
-                        <label for="signup_uid">युजरनेम</label>
-                        <input id="signup_uid" name="signup_uid" type="text" class="form-control" id="formGroupExampleInput" placeholder="userName">
-                      </div>
-
-                    <div class="form-group col-sm-6" >
-                        <label for="signup_full_name">पहिलो नाम</label>
-                        <input id="signup_first_name" name="signup_first_name" type="text" class="form-control" id="formGroupExampleInput2" placeholder="पुरा नाम">
-                    </div>
-                    <div class="form-group col-sm-6" >
-                        <label for="signup_full_name">थर</label>
-                        <input id="signup_last_name" name="signup_last_name" type="text" class="form-control" id="formGroupExampleInput2" placeholder="पुरा नाम">
-                    </div>
-                    <div class="form-group col-sm-6" >
-                        <label for="signup_pwd">ईमेल</label>
-                        <input id="signup_mail" name="signup_mail" type="text" class="form-control" id="formGroupExampleInput2" placeholder="ईमेल">
-                    </div>
-                    <div class="form-group col-sm-6" >
-                        <label for="signup_phone">फोन नं</label>
-                        <input id="signup_phone" name="signup_phone" type="text" class="form-control" id="formGroupExampleInput2" placeholder="फोन नं">
-                    </div>
-                    <div class="form-group col-sm-6" >
-                        <label for="signup_pwd">कार्यालय</label>
-                        <select name="org_ref_list">
-                            {% for o in org_ref %}
-                            <option value="{{o.id}}">{{o.officeName}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
+                    {% csrf_token %}
 
 
                     {% block content%}
@@ -177,12 +148,16 @@
     <script src="{% static 'pages\\vendor\\bootstrap\\js\\bootstrap.bundle.min.js'%}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
+    
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'pages\\js\\multistepformscript.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
+    <script src="{% static 'wysgi\\js\\editor.js' %}"></script>
+    <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
 
 </body>
+
+<script>
+</script>
 
 </html>
