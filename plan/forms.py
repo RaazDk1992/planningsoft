@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, Doc, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, Doc, MajorSector, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
@@ -47,6 +47,29 @@ class WodaForm(forms.ModelForm):
             'woda': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'वडा नं'
+            }),
+        }
+class MajorSectorsForm(forms.ModelForm):
+    class Meta:
+        model = MajorSector
+        fields = [
+            'section',
+            'section_en',
+            'is_active'
+        ]
+        labels  = {
+        'section':'क्षेत्र', 
+        'section_en': 'क्षेत्र अङ्ग्रेजीमा',
+        'is_active':'सक्रिय'
+        }
+        widgets = {
+            'section': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'क्षेत्र'
+            }),
+            'section_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'क्षेत्र'
             }),
         }
 
@@ -135,16 +158,19 @@ class ProjectTypesForms(forms.ModelForm):
     class Meta:
         model = ProjectType
         fields = [
+            'sector_ref',
             'type',
             'type_en',
             'isActive'
         ]
         labels  = {
+        'sector_ref':'क्षेत्र',
         'type':'आयोजनाकोरु प्रकार', 
         'type_en':'आयोजनाको प्रकार अङ्ग्रेजीमा', 
         'isActive':'सक्रिय'
         }
         widgets = {
+            'sector_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'योजना प्रकार '

@@ -3,8 +3,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import CommitteeForm, DocForm, FYform, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
-from .models import FY, Office, count
+from .forms import CommitteeForm, DocForm, FYform, MajorSectorsForm, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .models import FY, MajorSector, Office, count
 from docxtpl import DocxTemplate
 
 
@@ -80,6 +80,14 @@ def addFY(request):
             fyf.save()
 
     return render (request,'pages\\fymanagement.html',{'form':form})
+def sectors(request):
+    form = MajorSectorsForm()
+    if request.POST:
+        sf = MajorSectorsForm(request.POST)
+        if sf.is_valid:
+            sf.save()
+    return render (request,'pages\\fymanagement.html',{'form':form})
+
 
 def addWard(request):
     form = WodaForm()
