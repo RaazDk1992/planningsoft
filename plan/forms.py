@@ -172,8 +172,13 @@ class YojanaRegForm(forms.ModelForm):
              'prj_tole',
              'prj_type',
              'type_prj_ref',
+             'prj_start_date',
+             'prj_start_date_en',
+             'prj_completion_date',
+             'prj_completion_date_en',
              'affected_people',
              'prj_estimate', 
+             'is_multiyear',
              'is_active' ,
         ]
         labels  = {
@@ -184,9 +189,12 @@ class YojanaRegForm(forms.ModelForm):
              'prj_tole': 'योजना संचालन हुने स्थान',
              'prj_type':'योजनाको प्रकार',
              'type_prj_ref':'योजनाको प्रकृति',
+             'prj_start_date':'योजना सुरु हुने मिति',
+             'prj_completion_date':'योजना सम्पन्न हुने मिति',
              'affected_people': 'लाभान्वित जनसंख्या',
              'prj_estimate' : 'लागत ', 
-             'is_active': 'सक्िरय' ,
+             'is_multiyear':  'बहुवर्षिय',
+             'is_active': 'सक्रिय' ,
         }
 
         widgets = {
@@ -206,7 +214,19 @@ class YojanaRegForm(forms.ModelForm):
             }),
             'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
-            'affected_people': forms.TextInput(attrs={
+            'prj_start_date': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या'
+            }),
+             'prj_start_date_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या'
+            }),
+             'prj_completion_date': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या'
+            }),
+            'prj_completion_date_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या'
             }),

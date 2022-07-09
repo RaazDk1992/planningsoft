@@ -1,3 +1,4 @@
+from datetime import datetime
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
@@ -98,11 +99,10 @@ class YojanaDetails(models.Model):
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)
     affected_people = models.IntegerField()
     prj_start_date = models.CharField(max_length=80)
-    prj_start_date_en = models.DateField(auto_now=True)
+    prj_start_date_en = models.DateField(default=timezone.now())
     prj_completion_date = models.CharField(max_length=80)
-    prj_completion_date_en = models.DateField(auto_now=True)
+    prj_completion_date_en = models.DateField(default=timezone.now())
     is_multiyear = models.BooleanField(default=False)
-
     prj_estimate = models.FloatField()
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
