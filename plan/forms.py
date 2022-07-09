@@ -223,7 +223,8 @@ class YojanaRegForm(forms.ModelForm):
              'prj_completion_date',
              'prj_completion_date_en',
              'affected_people',
-             'prj_estimate', 
+             'prj_estimate',
+             'estimate_in_letters', 
              'is_multiyear',
              'is_active' ,
         ]
@@ -240,6 +241,7 @@ class YojanaRegForm(forms.ModelForm):
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
              'affected_people': 'लाभान्वित जनसंख्या',
              'prj_estimate' : 'लागत ', 
+             'estimate_in_letters': 'अक्षेरुपी रु.',
              'is_multiyear':  'बहुवर्षिय',
              'is_active': 'सक्रिय' ,
         }
@@ -286,6 +288,10 @@ class YojanaRegForm(forms.ModelForm):
                 'placeholder':'लाभान्वित जनसंख्या'
             }),
             'prj_estimate': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लागत रु '
+            }),
+            'estimate_in_letters': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लागत रु '
             }),
