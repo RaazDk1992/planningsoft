@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login
 import requests
 import logging
 from .forms import CommitteeForm, DocForm, FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
-from .models import FY, Office
+from .models import FY, Office, count
 from docxtpl import DocxTemplate
 
 
@@ -49,7 +49,22 @@ def verification(request):
 
     
 def registerPlan(request):
-    form  = YojanaRegForm()
+    code = ""
+    if count.objects.exists():
+        c = count.objects.last()
+        fy = FY.objects.last()
+
+        code = fy.fy_np+'/'+str(c.count+1)
+
+
+        
+    else:
+         fy = FY.objects.last()
+         c= count(fy_ref = fy,count=1,count_np = '१')
+         c.save(force_insert=True)
+         code = fy.fy_np+'/'+str(0)
+
+    form  = YojanaRegForm(initial={'prj_ref':code})
     return render (request,'pages\\registerplan.html',{'form':form})
 
 def addFY(request):

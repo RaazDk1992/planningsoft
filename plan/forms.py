@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, Doc,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, Doc, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
@@ -31,6 +31,25 @@ class FYform(forms.ModelForm):
                 'placeholder':'Fiscal Year in Nepali '
             }),
         }
+class WodaForm(forms.ModelForm):
+    class Meta:
+        model = Woda
+        fields = [
+            'woda',
+            'isactive'
+        ]
+        labels  = {
+        'woda':'वडा नं', 
+       
+        'isActive':'सक्रिय'
+        }
+        widgets = {
+            'woda': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'वडा नं'
+            }),
+        }
+
 
 class CommitteeForm(forms.ModelForm):
      class Meta:
@@ -215,20 +234,23 @@ class YojanaRegForm(forms.ModelForm):
             'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_start_date': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'लाभान्वित जनसंख्या'
+                'class':'form-control col-sm-6 picker',
+                'placeholder':'मिति छान्नुहोस्',
+                'id':'prj_start'
             }),
              'prj_start_date_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'लाभान्वित जनसंख्या'
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'prj_start_en'
             }),
              'prj_completion_date': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'लाभान्वित जनसंख्या'
+                'class':'form-control col-sm-6 picker',
+                'placeholder':'मिति छान्नुहोस्',
+                'id':'prj_complete'
             }),
             'prj_completion_date_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'लाभान्वित जनसंख्या'
+                'id':'prj_complete_en'
             }),
             'affected_people': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',

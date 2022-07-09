@@ -26,7 +26,7 @@
     
     <!-- Custom styles for this template-->
     <link href="{% static 'pages\\css\\sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'pages\\css\\multi.css' %}" rel="stylesheet">
+    <link href="{% static 'datepicker\\nepaliDatePicker.min.css' %}" rel="stylesheet">
 
     <style>
         
@@ -149,9 +149,52 @@
     <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'pages\\js\\multistepformscript.js' %} "></script>
+    <script src="{% static 'datepicker\\nepaliDatePicker.min.js' %} "></script>
+    <script src="{% static 'converter\\digit.js' %} "></script>
+    <script src="{% static 'converter\\prototypes.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
 
+
 </html>
+
+<script>
+    $(document).ready(function(){
+        $(".picker").nepaliDatePicker({
+                                        dateFormat: "%y-%m-%d",
+                                         closeOnDateSelect: true
+                                        });
+        $("#prj_start").on("dateSelect", function (event) {
+
+            tmp = $("#prj_start").val().split("-")
+
+            t = calendarFunctions.parseFormattedBsDate("%y %M, %d %D", "२०७४ चैत, ९ बुध");
+            console.log(t)    
+            yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
+                mm =  calendarFunctions.getNumberByNepaliNumber(tmp[1])
+                dd =  calendarFunctions.getNumberByNepaliNumber(tmp[2])
+                date_en = calendarFunctions.getAdDateByBsDate(yr, mm, dd)
+                mme = date_en.getMonth()+1
+                 $("#prj_start_en").val(date_en.getFullYear()+"-"+mme+"-"+date_en.getDate())
+                                                            });
+
+
+$("#prj_complete").on("dateSelect", function (event) {
+
+tmp = $("#prj_complete").val().split("-")
+
+t = calendarFunctions.parseFormattedBsDate("%y %M, %d %D", "२०७४ चैत, ९ बुध");
+console.log(t)    
+yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
+    mm =  calendarFunctions.getNumberByNepaliNumber(tmp[1])
+    dd =  calendarFunctions.getNumberByNepaliNumber(tmp[2])
+    date_en = calendarFunctions.getAdDateByBsDate(yr, mm, dd)
+    mme = date_en.getMonth()+1
+     $("#prj_complete_en").val(date_en.getFullYear()+"-"+mme+"-"+date_en.getDate())
+                                                });
+
+    });
+
+    
+</script>
