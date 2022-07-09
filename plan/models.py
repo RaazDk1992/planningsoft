@@ -1,4 +1,5 @@
 from datetime import datetime
+from pdb import Restart
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
@@ -141,21 +142,10 @@ class Comittee(models.Model):
 class ComitteeMembers(models.Model):
     comittee_ref = models.ForeignKey(Comittee,on_delete=models.RESTRICT)
     project_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
-    chairperson_name = models.CharField(max_length=50)
-    chairperson_citizen = models.CharField(max_length=50)
-    memberone_name = models.CharField(max_length=50)
-    memberone_citizen = models.CharField(max_length=50)
-    memberone_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    memberone_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    memberone_image = models.ImageField(upload_to = 'path',default='default.jpg')
-
-    membertwo_name = models.CharField(max_length=50)
-    membertwo_citizen = models.CharField(max_length=50)
-    membertwo_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    membertwo_image = models.ImageField(upload_to = 'path',default='default.jpg')
-
-    memberthree_name = models.CharField(max_length=50)
-    memberthree_citizen = models.CharField(max_length=50)
-    memberthree_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    memberthree_image = models.ImageField(upload_to = 'path',default='default.jpg')
+    member_name = models.CharField(max_length=50)
+    member_designation = models.ForeignKey(Designation,on_delete=models.RESTRICT)
+    member_citizen = models.CharField(max_length=50)
+    member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
+    member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
+    member_image = models.ImageField(upload_to = 'path',default='default.jpg')
 
