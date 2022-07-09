@@ -54,6 +54,11 @@ def registerPlan(request):
 
 def addFY(request):
     form = FYform()
+    if request.POST:
+        fyf = FYform(request.POST)
+        if fyf.is_valid:
+            fyf.save()
+
     return render (request,'pages\\fymanagement.html',{'form':form})
     
 def addStaff(request):
@@ -70,7 +75,7 @@ def addStaff(request):
         user.profile.sanketNo = request.POST['signup_first_name']
         user.profile.contactNo = 'erererere'
         user.profile.is_active = True
-       # user.save()
+        user.save()
     return render(request,'pages\\adduser.html',{'org_ref':org_ref})
 
 
@@ -104,6 +109,10 @@ def addProjectType(request):
         return render (request,'pages\\projecttype.html',{'form':form})
 def addTypeOfProject(request):
     form  = TypeOfProjectForm()
+    if request.POST:
+        pf = TypeOfProjectForm(request.POST)
+        if pf.is_valid:
+            pf.save()
     return render (request,'pages\\typeofProject.html',{'form':form})
 
 

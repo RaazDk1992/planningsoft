@@ -63,13 +63,20 @@ class ProjectType(models.Model):
     type = models.CharField(max_length=50)
     type_en = models.CharField(max_length=100)
     isActive = models.BooleanField(default=True)
+    def __str__(self):
+        return self.type
 class TypeOfProject(models.Model):
     type_description = models.CharField(max_length=40)
     type_description_en = models.CharField(max_length=40)
     isActive = models.BooleanField(default=True)
+    def __str__(self):
+        return self.type_description
 class UnitOfWork(models.Model):
    
     unit_name = models.CharField(max_length=20)
+    unit_name_en = models.CharField(max_length=20)
+    def __str__(self):
+        return self.unit_name
 class YojanaDetails(models.Model):
     prj_ref = models.CharField(max_length=40)
     prj_name = models.CharField(max_length=100)
@@ -83,6 +90,8 @@ class YojanaDetails(models.Model):
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.prj_name
 
 class committee(models.Model):
     project_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
