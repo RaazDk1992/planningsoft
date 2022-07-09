@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -54,6 +55,7 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Doc(models.Model):
+    doc_ref = models.CharField(max_length=20)
     doc_name = models.CharField(max_length=100)
     doc_body = models.TextField(max_length=2000)
     is_active = models.BooleanField(default=True)

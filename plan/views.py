@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate,login
 import requests
 import logging
 from .forms import DocForm, FYform, OfficeForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
-from .models import FY, Office, YojanaDetails
+from .models import FY, Office
+from docxtpl import DocxTemplate
+
 
 # Create your views here.
 
@@ -24,7 +26,10 @@ def default(request):
     status_code = r.status_code
     response = r.text 
     """
-
+    doc = DocxTemplate("inv.docx")
+    context = { 'recipientName' : "World company" }
+    doc.render(context)
+    doc.save("generated_doc.docx")
     return render(request,'login\\index.html',{'r':'apple'}) 
 
 
