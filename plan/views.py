@@ -1,3 +1,4 @@
+from operator import and_
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth 
 from django.contrib.auth import authenticate,login
@@ -132,7 +133,6 @@ def addDoc(request):
 
 
 def Comittee(request):
-    
     if request.session.has_key('project_code'):
         code = request.session['project_code']
         cf = CommitteeForm(initial={'project_ref':code})
@@ -142,8 +142,10 @@ def Comittee(request):
             if cform.is_valid:
                 c = cform.save()
                 request.session['commitee_ref'] = c.pk
-                return redirect('')
-        return render(request,'pages\\comittee.html',{'form':cf})        
+                return redirect('committeem')
+        return render(request,'pages\\comittee.html',{'form':cf})  
+    else:
+        return redirect('registerplan')      
 
 
 def addOffice(request):
@@ -169,15 +171,19 @@ def addTypeOfProject(request):
     return render (request,'pages\\typeofProject.html',{'form':form})
 
 def committeeMembers(request):
-    fo = MembersForm()
+    if request.session.has_key('project_code') and request.session.has_key('commitee_ref') :
+        fo = MembersForm()
 
-    if request.POST:
-        mf = MembersForm(request.POST)
-        if mf.is_valid:
-            mf.save()
-            request.session['members_added'] = 1
+        if request.POST:
+            mf = MembersForm(request.POST)
+            if mf.is_valid:
+                 mf.save()
+                 request.session['members_added'] = 1
 
-    return render (request,'pages\\committeemembers.html',{'form':fo})
+
+        return render (request,'pages\\committeemembers.html',{'form':fo})
+    else:
+         return redirect('comittee')
 
 
 
