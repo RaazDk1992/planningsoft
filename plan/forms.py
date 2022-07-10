@@ -3,6 +3,7 @@ from pyexpat import model
 from django.db import models
 from .models import FY, Comittee, ComitteeMembers, Doc, MajorSector, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
+from django.forms import modelformset_factory
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
 
@@ -346,3 +347,5 @@ class ComitteeMembersForm(forms.ModelForm):
                 'placeholder':'Project Category in english '
             }),
         }
+    CommitteeMembersFormSet = modelformset_factory(
+    ComitteeMembers, extra=1)

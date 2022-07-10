@@ -148,3 +148,4 @@ class ComitteeMembers(models.Model):
     member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
     member_image = models.ImageField(upload_to = 'path',default='default.jpg')
 
+
