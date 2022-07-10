@@ -173,7 +173,7 @@ class ProgressGeneral(models.Model):
     amt = models.FloatField()
     remarks = models.TextField(max_length=200)
 
-class FinalizeForm(models.Model):
+class Finalize(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
     to_date = models.DateField(default=timezone.now())
   
