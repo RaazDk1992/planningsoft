@@ -184,6 +184,10 @@ def committeeMembers(request):
         return render (request,'pages\\committeemembers.html',{'form':fo})
     else:
          return redirect('comittee')
+def addTippani(request):
+    
+    return render (request,'pages\\committeemembers.html',{'form':fo})
+
 
 
 

@@ -149,3 +149,17 @@ class ComitteeMembers(models.Model):
     member_image = models.ImageField(upload_to = 'path',default='default.jpg')
 
 
+class Tippani(models.Model):
+    prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    file_path = models.FileField(upload_to='files')
+
+class Karyadesh(models.Model):
+    prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    file_path = models.FileField(upload_to='files')
+
+class Samjhauta(models.Model):
+    prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    file_path = models.FileField(upload_to='files')
+
+
+
