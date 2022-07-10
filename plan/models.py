@@ -176,6 +176,7 @@ class ProgressGeneral(models.Model):
 class Finalize(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
     to_date = models.DateField(default=timezone.now())
+    message = models.TextField(max_length=100)
   
 
 

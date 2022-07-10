@@ -4,7 +4,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import CommitteeForm, DesignationForm, DocForm, FYform, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, ComitteeMembers, MajorSector, Office, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
@@ -216,7 +216,9 @@ def finalize(request):
         if request.session.has_key('user'):
             u = request.session['user']
         if request.session.has_key('project_code_'+str(u)) and request.session.has_key('commitee_ref_'+str(u)) :
-          return render (request,'pages\\finalize.html')
+          code = request.session['project_code_'+str(u)]
+          finalze = FinalizeForm(initial={'prj_ref':code})
+          return render (request,'pages\\finalize.html',{'form':finalze})
     return redirect('validate')
 
 

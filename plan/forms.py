@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, ComitteeMembers, Designation, Doc, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
@@ -386,5 +386,33 @@ class TippaniForm(forms.ModelForm):
             'fy_np': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Fiscal Year in Nepali '
+            }),
+        }
+class FinalizeForm(forms.ModelForm):
+    class Meta:
+        model = Finalize
+        fields = [
+            'prj_ref',
+            'to_date',
+            'message'
+        ]
+        labels  = {
+        'prj_ref':'कागजातको नाम', 
+        'to_date':'FilePath',
+        'message':'Message'
+        }
+        widgets = {
+            'prj_ref': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'कागजातको नाम '
+            }),
+            'to_date': forms.TextInput(attrs={
+                'class':'form-control col-sm-6 picker',
+                'placeholder':'Fiscal Year in Nepali '
+
+            }),
+            'message': forms.Textarea(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Type Message here.. '
             }),
         }
