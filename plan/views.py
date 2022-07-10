@@ -3,8 +3,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import ComitteeMembersForm, CommitteeForm, DocForm, FYform, MajorSectorsForm, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
-from .models import FY, MajorSector, Office, count
+from .forms import CommitteeForm, DocForm, FYform, MajorSectorsForm, MembersForm, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .models import FY, ComitteeMembers, MajorSector, Office, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
 
@@ -169,10 +169,15 @@ def addTypeOfProject(request):
     return render (request,'pages\\typeofProject.html',{'form':form})
 
 def committeeMembers(request):
-    memberFormSet = modelformset_factory(ComitteeMembersForm)
-    comitteeFormSet = memberFormSet()
+    fo = MembersForm()
 
-    return render (request,'pages\\committeemembers.html',{'formset':comitteeFormSet})
+    if request.POST:
+        mf = MembersForm(request.POST)
+        if mf.is_valid:
+            mf.save()
+            request.session['members_added'] = 1
+
+    return render (request,'pages\\committeemembers.html',{'form':fo})
 
 
 

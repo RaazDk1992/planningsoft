@@ -304,7 +304,7 @@ class YojanaRegForm(forms.ModelForm):
                 'id':'amt_ltrs'
             }),
         }
-class ComitteeMembersForm(forms.ModelForm):
+class MembersForm(forms.ModelForm):
     class Meta:
         model = ComitteeMembers
         fields = [
@@ -347,5 +347,3 @@ class ComitteeMembersForm(forms.ModelForm):
                 'placeholder':'Project Category in english '
             }),
         }
-    CommitteeMembersFormSet = modelformset_factory(
-    ComitteeMembers, extra=1)

@@ -65,24 +65,38 @@
 
                    <!-- MultiStep Form -->
 
-                   <form class="form form-horizontal" action="?" method="POST">
+                   <form id="form-container" class="form form-horizontal" action="?" method="POST">
                     {% csrf_token %}
+                    <input type="hidden" name="form-TOTAL_FORMS" value="1" id="id_form-TOTAL_FORMS_F">
+                        <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS_F">
+                        <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS_F">
+                        <input type="hidden" name="form-MAX_NUM_FORMS" value="10" id="id_form-MAX_NUM_FORMS_F">
+                   
+                        <div id="member_formset" class="members_form">
+                            {% for form in form %}
+
+                            {% for field in form %}
+
+                            <div class="form-group">
+                                
+                                {{field.label_tag }}{{ field }}
+                            </div>
+        
+                            {% endfor %}
+        
+                            {% endfor %}
 
 
-                    {% block content%}
+                        </div>
+                   
+                       <div>
 
-                    {% for field in form %}
+                        <div id="newRow"></div>
 
-                    <div class="form-group">
-                        
-                        {{field.label_tag }}{{ field }}
-                    </div>
+                        <div id="btn" style="float:right;"><span id="add_form">add</span>&nbsp;<span id="removeRow">remove</span></div>
 
-                    {% endfor %}
-
-                {% endblock %}
-
-                <input type="submit" name="addFY" value="Go"/>
+                       </div>
+                  <input type="submit" name="addFY" value="Go"/>
                 </form>
                     <!-- /.MultiStep Form -->
 
@@ -153,5 +167,9 @@
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
+<script>
+   
 
+
+</script>
 </html>

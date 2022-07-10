@@ -16,7 +16,9 @@ urlpatterns = [
     path('addoffice/',views.addOffice,name="addoffice"),
     path('comittee/',views.Comittee,name="comittee"),
     path('ward/',views.addWard,name="ward"),
-    path('sectors/',views.sectors,name="sectors")
+    path('sectors/',views.sectors,name="sectors"),
+    path('committeem/',views.committeeMembers,name="commiteem")
+
 
 
 ]
