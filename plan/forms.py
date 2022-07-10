@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, ComitteeMembers, Doc, MajorSector, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Comittee, ComitteeMembers, Designation, Doc, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
 from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
@@ -28,6 +28,30 @@ class FYform(forms.ModelForm):
                 'placeholder':'Fiscal Year in English '
             }),
             'fy_np': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Fiscal Year in Nepali '
+            }),
+        }
+
+class DesignationForm(forms.ModelForm):
+    class Meta:
+        model = Designation
+        fields = [
+            'designation',
+            'designation_en',
+            'is_active'
+        ]
+        labels  = {
+        'designation':'पद', 
+        'designation_en':'पद अङ्ग्रजीमा', 
+        'is_active':'सक्रिय'
+        }
+        widgets = {
+            'designation': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Fiscal Year in English '
+            }),
+            'designation_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Fiscal Year in Nepali '
             }),
@@ -330,20 +354,31 @@ class MembersForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'नाम '
             }),
-            'member_designation': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'Project Category in english '
-            }),
+            'member_designation':forms.Select(attrs={'class':'form-control col-sm-6'}) ,
             'member_citizen': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Project Category in english '
             }),
-            'member_citizen_img': forms.TextInput(attrs={
+           
+        }
+class TippaniForm(forms.ModelForm):
+     class Meta:
+        model = Tippani
+        fields = [
+            'title',
+            'file_path'
+        ]
+        labels  = {
+        'title':'कागजातको नाम', 
+        'file_path':'FilePath'
+        }
+        widgets = {
+            'title': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'Project Category in english '
+                'placeholder':'कागजातको नाम '
             }),
-            'member_image': forms.TextInput(attrs={
+            'fy_np': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'Project Category in english '
+                'placeholder':'Fiscal Year in Nepali '
             }),
         }

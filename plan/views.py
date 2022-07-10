@@ -4,7 +4,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import CommitteeForm, DocForm, FYform, MajorSectorsForm, MembersForm, OfficeForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import CommitteeForm, DesignationForm, DocForm, FYform, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, ComitteeMembers, MajorSector, Office, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
@@ -28,10 +28,10 @@ def default(request):
     status_code = r.status_code
     response = r.text 
     """
-    doc = DocxTemplate("inv.docx")
+    doc = DocxTemplate("templates\\reports\\inv.docx")
     context = { 'recipientName' : "World company" }
     doc.render(context)
-    doc.save("generated_doc.docx")
+    doc.save("templates\\reports\\generated_doc.docx")
     return render(request,'login\\index.html',{'r':'apple'}) 
 
 
@@ -44,6 +44,8 @@ def verification(request):
         
         if user is not None:
             login(request,user)
+            request.session['user'] = user.pk
+            
            # 
             return redirect('admindashboard')
         else:
@@ -51,29 +53,34 @@ def verification(request):
 
     
 def registerPlan(request):
-    code = ""
-    if count.objects.exists():
-        c = count.objects.last()
-        fy = FY.objects.last()
+    request.session['user'] = 1
+    if request.session.has_key('user'):
+        u =request.session['user']
+        code = ""
+        if count.objects.exists():
+         c = count.objects.last()
+         fy = FY.objects.last()
 
-        code = fy.fy_np+'/'+str(c.count+1)
+         code = fy.fy_np+'/'+str(c.count+1)
 
 
         
-    else:
+        else:
          fy = FY.objects.last()
          c= count(fy_ref = fy,count=1,count_np = '१')
          c.save(force_insert=True)
          code = fy.fy_np+'/'+str(0)
 
-    form  = YojanaRegForm(initial={'prj_ref':code})
+        form  = YojanaRegForm(initial={'prj_ref':code})
 
     if request.POST:
-        yf = YojanaRegForm(request.POST)
-        if yf.is_valid:
-            f = yf.save()
-            request.session['project_code'] = f.pk
-            return redirect('comittee')
+        if request.session.has_key('user'):
+            u =request.session['user']
+            yf = YojanaRegForm(request.POST)
+            if yf.is_valid:
+                f = yf.save()
+                request.session['project_code_'+str(u)] = f.pk
+                return redirect('comittee')
     return render (request,'pages\\registerplan.html',{'form':form})
 
 def addFY(request):
@@ -133,15 +140,17 @@ def addDoc(request):
 
 
 def Comittee(request):
-    if request.session.has_key('project_code'):
-        code = request.session['project_code']
-        cf = CommitteeForm(initial={'project_ref':code})
-        #print(username)
+    if request.session.has_key('user'):
+        u =request.session['user']
+        if request.session.has_key('project_code_'+str(u)):
+         code = request.session['project_code_'+str(u)]
+         cf = CommitteeForm(initial={'project_ref':code})
+        #print(code)
         if request.POST:
             cform = CommitteeForm(request.POST)
             if cform.is_valid:
                 c = cform.save()
-                request.session['commitee_ref'] = c.pk
+                request.session['commitee_ref_'+str(u)] = c.pk
                 return redirect('committeem')
         return render(request,'pages\\comittee.html',{'form':cf})  
     else:
@@ -171,22 +180,36 @@ def addTypeOfProject(request):
     return render (request,'pages\\typeofProject.html',{'form':form})
 
 def committeeMembers(request):
-    if request.session.has_key('project_code') and request.session.has_key('commitee_ref') :
-        fo = MembersForm()
-
-        if request.POST:
-            mf = MembersForm(request.POST)
-            if mf.is_valid:
+    if request.session.has_key('user'):
+        u = request.session['user']
+        if request.session.has_key('project_code_'+str(u)) and request.session.has_key('commitee_ref_'+str(u)) :
+            code = request.session['project_code_'+str(u)]
+       
+            cref = request.session['commitee_ref_'+str(u)]
+            fo = MembersForm(initial={'project_ref':code,'comittee_ref':cref})
+            if request.POST:
+                mf = MembersForm(request.POST, request.FILES)
+                if mf.is_valid:
                  mf.save()
                  request.session['members_added'] = 1
+                 return render (request,'pages\\committeemembers.html',{'form':fo})
+                else:
+                    return redirect('comittee')
+            return render (request,'pages\\committeemembers.html',{'form':fo})
 
+def designation(request):
+    df = DesignationForm()
+    if request.POST:
+        dform  = DesignationForm(request.POST)
+        if dform.is_valid:
+            dform.save()
 
-        return render (request,'pages\\committeemembers.html',{'form':fo})
-    else:
-         return redirect('comittee')
+    return render (request,'pages\\designation.html',{'form':df})
+
 def addTippani(request):
-    
-    return render (request,'pages\\committeemembers.html',{'form':fo})
+    if request.session.has_key('user'):
+        tf = TippaniForm()
+    return render (request,'pages\\tippani.html',{'form':tf})
 
 
 

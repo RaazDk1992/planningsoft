@@ -17,7 +17,12 @@ urlpatterns = [
     path('comittee/',views.Comittee,name="comittee"),
     path('ward/',views.addWard,name="ward"),
     path('sectors/',views.sectors,name="sectors"),
-    path('committeem/',views.committeeMembers,name="committeem")
+    path('committeem/',views.committeeMembers,name="committeem"),
+    path('designation/',views.designation,name="designation"),
+    path('tippani/',views.addTippani,name="tippani")
+
+
+
 
 
 

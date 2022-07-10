@@ -60,32 +60,29 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">निर्माण ब्यवसायी/ उपभोक्ता समिति पदाधिकारी विवरण</h1>
+                    <h1 class="h3 mb-4 text-gray-800">योजना दर्ता</h1>
 
 
                    <!-- MultiStep Form -->
 
-                   <form id="form-container" class="form" action="?" method="POST" enctype="multipart/form-data">
+                   <form class="form form-horizontal" action="?" method="POST">
                     {% csrf_token %}
-                  
 
-                            {% for field in form %}
 
-                            <div class="form-group">
-                                
-                                {{field.label_tag }}{{ field }}
-                            </div>
-        
-                            {% endfor %}
-                   
-                       <div>
+                    {% block content%}
 
-                        <div id="newRow"></div>
+                    {% for field in form %}
 
-                        <div id="btn" style="float:right;"><span id="add_form">add</span>&nbsp;<span id="removeRow">remove</span></div>
+                    <div class="form-group">
+                        
+                        {{field.label_tag }}{{ field }}
+                    </div>
 
-                       </div>
-                  <input type="submit" name="addFY" value="Go"/>
+                    {% endfor %}
+
+                {% endblock %}
+
+                <input type="submit" name="addFY" value="Go"/>
                 </form>
                     <!-- /.MultiStep Form -->
 
@@ -156,9 +153,5 @@
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
-<script>
-   
 
-
-</script>
 </html>

@@ -1,4 +1,5 @@
 from datetime import datetime
+from operator import mod
 from pdb import Restart
 from pyexpat import model
 from django.db import models
@@ -151,15 +152,24 @@ class ComitteeMembers(models.Model):
 
 class Tippani(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    title = models.CharField(max_length=100)
     file_path = models.FileField(upload_to='files')
 
 class Karyadesh(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    title = models.CharField(max_length=100)
     file_path = models.FileField(upload_to='files')
 
 class Samjhauta(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    title = models.CharField(max_length=100)
     file_path = models.FileField(upload_to='files')
 
+class ProgressGeneral(models.Model):
+    sector_ref = models.ForeignKey(MajorSector, on_delete=models.RESTRICT)
+    title = models.CharField(max_length=100)
+    population = models.IntegerField()
+    amt = models.FloatField()
+    remarks = models.TextField(max_length=200)
 
 
