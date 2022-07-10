@@ -148,6 +148,7 @@ class ComitteeMembers(models.Model):
     member_citizen = models.CharField(max_length=50)
     member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
     member_image = models.ImageField(upload_to = 'path',default='default.jpg')
+    member_phone = models.CharField(max_length=12)
 
 
 class Tippani(models.Model):
@@ -171,5 +172,11 @@ class ProgressGeneral(models.Model):
     population = models.IntegerField()
     amt = models.FloatField()
     remarks = models.TextField(max_length=200)
+
+class FinalizeForm(models.Model):
+    prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
+    to_date = models.DateField(default=timezone.now())
+  
+
 
 

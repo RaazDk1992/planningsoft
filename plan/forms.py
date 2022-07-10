@@ -338,14 +338,16 @@ class MembersForm(forms.ModelForm):
             'member_designation',
             'member_citizen',
             'member_citizen_img',
-            'member_image'
+            'member_image',
+            'member_phone'
         ]
         labels  = {
             'member_name': 'नाम',
             'member_designation' : 'पद',
             'member_citizen':'नागरिकता नं',
             'member_citizen_img':'नागरिकता',
-            'member_image':'फोटो'
+            'member_image':'फोटो',
+            'member_phone':'फोन नं'
         }
         widgets = {
             'comittee_ref':forms.HiddenInput(attrs={'class':'form-control col-sm-6'}),
@@ -358,6 +360,10 @@ class MembersForm(forms.ModelForm):
             'member_citizen': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Project Category in english '
+            }),
+            'member_phone': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Mobile No. '
             }),
            
         }

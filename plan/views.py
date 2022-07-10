@@ -211,6 +211,15 @@ def addTippani(request):
         tf = TippaniForm()
     return render (request,'pages\\tippani.html',{'form':tf})
 
+def finalize(request):
+    if request.session.has_key('user'):
+        if request.session.has_key('user'):
+            u = request.session['user']
+        if request.session.has_key('project_code_'+str(u)) and request.session.has_key('commitee_ref_'+str(u)) :
+          return render (request,'pages\\finalize.html')
+    return redirect('validate')
+
+
 
 
 
