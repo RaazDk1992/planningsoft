@@ -7,11 +7,38 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import os
 
 
 # Create your models here.
+
+BASE_PATH = 'p'
 def user_unicode_patch(self):
     return '%s %s' % (self.first_name, self.last_name)
+
+   
+def comitteemembers_citizen_file_path(obj, fname):
+    a = YojanaDetails.objects.latest('prj_name')
+    
+    f = FY.objects.get(isactive = True)
+    return os.path.join(
+        f.fy_np,
+        a.prj_name,
+        'ComiteeMembers',
+        'citizen',
+        fname,
+    )
+
+def comitteemembers_meetings_file_path(obj, fname):
+    a = YojanaDetails.objects.latest('prj_name')
+    
+    f = FY.objects.get(isactive = True)
+    return os.path.join(
+        f.fy_np,
+        a.prj_name,
+        'Meetings',
+        fname,
+    )
 
 
 class Office(models.Model):
@@ -146,8 +173,8 @@ class ComitteeMembers(models.Model):
     member_name = models.CharField(max_length=50)
     member_designation = models.ForeignKey(Designation,on_delete=models.RESTRICT)
     member_citizen = models.CharField(max_length=50)
-    member_citizen_img = models.ImageField(upload_to = 'path',default='default.jpg')
-    member_image = models.ImageField(upload_to = 'path',default='default.jpg')
+    member_citizen_img = models.ImageField(upload_to = comitteemembers_citizen_file_path,default='default.jpg')
+    member_image = models.ImageField(upload_to = comitteemembers_citizen_file_path,default='default.jpg')
     member_phone = models.CharField(max_length=12)
 
 
@@ -179,6 +206,9 @@ class Finalize(models.Model):
     message = models.TextField(max_length=200)
     baseString = models.TextField(max_length=500)
     similarity = models.FloatField(default=0.0)
+
+
+
   
 
 

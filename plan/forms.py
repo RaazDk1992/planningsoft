@@ -394,12 +394,14 @@ class FinalizeForm(forms.ModelForm):
         fields = [
             'prj_ref',
             'to_date',
-            'message'
+            'baseString',
+            'message' 
+            
         ]
         labels  = {
         'prj_ref':'योजना संकेत', 
         'to_date':'सम्झौताको लागि मिति तोक्नुहोस्',
-        'message':'Message'
+        'baseString':'Message'
         }
         widgets = {
             'prj_ref': forms.TextInput(attrs={
@@ -412,9 +414,15 @@ class FinalizeForm(forms.ModelForm):
                 'id':'date_picker_final'
 
             }),
+            'baseString': forms.Textarea(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'Type Message here.. ',
+                'id':'base_text',
+            }),
             'message': forms.Textarea(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'Type Message here.. ',
-                'id':'base_text'
+                'id':'msg',
+                'hidden':True
             }),
         }

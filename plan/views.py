@@ -218,11 +218,10 @@ def finalize(request):
         if request.session.has_key('project_code_'+str(u)) and request.session.has_key('commitee_ref_'+str(u)) :
           code = request.session['project_code_'+str(u)]
           com = request.session['commitee_ref_'+str(u)]
-          print(com)
           prj = YojanaDetails.objects.get(pk=code)
           member = ComitteeMembers.objects.get(pk =2)
           txt = 'श्री &nbsp;'+member.member_name+'&nbsp;तपाईंले पेश गर्नु भएको योजना \n'+'<span id="project_code">'+prj.prj_ref+'</span>\n'+'<span id="project_name">'+prj.prj_name+'</span>'+' &nbsp;दर्ता भएको छ । <br>'+'सम्झौताको लागी मिति <span id="date_to">'+'</span> मा कार्यालय समयमा उपस्थित हुनुहोला ।'
-          finalze = FinalizeForm(initial={'prj_ref':code, 'message':txt})
+          finalze = FinalizeForm(initial={'prj_ref':code, 'baseString':txt})
           if request.POST:
             f = FinalizeForm(request.POST)
             if f.is_valid:
