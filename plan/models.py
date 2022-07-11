@@ -175,8 +175,10 @@ class ProgressGeneral(models.Model):
 
 class Finalize(models.Model):
     prj_ref = models.ForeignKey(YojanaDetails,on_delete=models.RESTRICT)
-    to_date = models.DateField(default=timezone.now())
-    message = models.TextField(max_length=100)
+    to_date = models.CharField(max_length=50)
+    message = models.TextField(max_length=200)
+    baseString = models.TextField(max_length=500)
+    similarity = models.FloatField(default=0.0)
   
 
 

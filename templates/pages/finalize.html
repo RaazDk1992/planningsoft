@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>योजना दर्ता</title>
+    <title>प्रक्रियाको समाप्ती र  सूचना प्रेषण</title>
 
     <!--
         <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"/>
@@ -26,7 +26,7 @@
     
     <!-- Custom styles for this template-->
     <link href="{% static 'pages\\css\\sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'pages\\css\\multi.css' %}" rel="stylesheet">
+    <link href="{% static 'datepicker\\nepaliDatePicker.min.css' %}" rel="stylesheet">
 
     <style>
         
@@ -60,7 +60,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">योजना दर्ता</h1>
+                    <h1 class="h3 mb-4 text-gray-800">प्रक्रियाको समाप्ती र  सूचना प्रेषण</h1>
 
 
                    <!-- MultiStep Form -->
@@ -81,7 +81,7 @@
                     {% endfor %}
 
                 {% endblock %}
-
+               
                 <input type="submit" name="addFY" value="Go"/>
                 </form>
                     <!-- /.MultiStep Form -->
@@ -89,7 +89,7 @@
 
                     <!-- end of multistep-->
 
-
+                    <div contenteditable="true" id="contnt"></div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -149,9 +149,47 @@
     <script src="{% static 'pages\\vendor\\jquery-easing\\jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'pages\\js\\multistepformscript.js' %} "></script>
+    <script src="{% static 'datepicker\\nepaliDatePicker.min.js' %} "></script>
     <script src="{% static 'pages\\js\\sb-admin-2.min.js' %} "></script>
 
 </body>
 
+<script>
+    
+</script>    
+<style>
+    #contnt {
+    width: 300px;
+    height: 200px;
+    border: 1px solid red;
+    padding: 5px;
+}
+
+</style>
+
+<script>
+    $(document).ready(function(){
+        t = $("#base_text").val()
+    
+        $("#contnt").html(t)
+
+        //
+
+        //
+
+        $("#date_picker_final").nepaliDatePicker({
+         dateFormat: "%y-%m-%d",
+    closeOnDateSelect: true
+});
+
+
+$("#date_picker_final").on("dateSelect", function (event) {
+
+    date = $("#date_picker_final").val()
+    $("#date_to").text(date)
+    $("#base_text").val($("#contnt").text())
+                                                });
+
+    })
+        </script>
 </html>

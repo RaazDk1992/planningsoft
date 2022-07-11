@@ -397,22 +397,24 @@ class FinalizeForm(forms.ModelForm):
             'message'
         ]
         labels  = {
-        'prj_ref':'कागजातको नाम', 
-        'to_date':'FilePath',
+        'prj_ref':'योजना संकेत', 
+        'to_date':'सम्झौताको लागि मिति तोक्नुहोस्',
         'message':'Message'
         }
         widgets = {
             'prj_ref': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'कागजातको नाम '
+                'placeholder':'सम्झौताको लागि मिति तोक्नुहोस्'
             }),
             'to_date': forms.TextInput(attrs={
                 'class':'form-control col-sm-6 picker',
-                'placeholder':'Fiscal Year in Nepali '
+                'placeholder':'मिति छान्नुहोस् ',
+                'id':'date_picker_final'
 
             }),
             'message': forms.Textarea(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':'Type Message here.. '
+                'placeholder':'Type Message here.. ',
+                'id':'base_text'
             }),
         }

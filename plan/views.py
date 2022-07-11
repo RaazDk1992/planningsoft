@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login
 import requests
 import logging
 from .forms import CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
-from .models import FY, ComitteeMembers, MajorSector, Office, count
+from .models import FY, ComitteeMembers, MajorSector, Office, YojanaDetails, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
 
@@ -217,7 +217,28 @@ def finalize(request):
             u = request.session['user']
         if request.session.has_key('project_code_'+str(u)) and request.session.has_key('commitee_ref_'+str(u)) :
           code = request.session['project_code_'+str(u)]
-          finalze = FinalizeForm(initial={'prj_ref':code})
+          com = request.session['commitee_ref_'+str(u)]
+          print(com)
+          prj = YojanaDetails.objects.get(pk=code)
+          member = ComitteeMembers.objects.get(pk =2)
+          txt = 'श्री &nbsp;'+member.member_name+'&nbsp;तपाईंले पेश गर्नु भएको योजना \n'+'<span id="project_code">'+prj.prj_ref+'</span>\n'+'<span id="project_name">'+prj.prj_name+'</span>'+' &nbsp;दर्ता भएको छ । <br>'+'सम्झौताको लागी मिति <span id="date_to">'+'</span> मा कार्यालय समयमा उपस्थित हुनुहोला ।'
+          finalze = FinalizeForm(initial={'prj_ref':code, 'message':txt})
+          if request.POST:
+            f = FinalizeForm(request.POST)
+            if f.is_valid:
+                f.save()
+                msg = f.cleaned_data.get('message')
+            
+                r = requests.get(
+                                    "http://api.sparrowsms.com/v2/sms/",
+                                    params={'token' : 'v2_hUlUgdGo3G5CnSXjGENwguXBbWQ.UGCu',
+                                    'from'  : 'LekbeshiMun',
+                                    'to'    : '9848288339',
+                                    'text'  : msg})
+
+                status_code = r.status_code
+                response = r.text 
+        
           return render (request,'pages\\finalize.html',{'form':finalze})
     return redirect('validate')
 
