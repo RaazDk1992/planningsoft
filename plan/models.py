@@ -40,6 +40,12 @@ def comitteemembers_meetings_file_path(obj, fname):
         fname,
     )
 
+class YojanaType(models.Model):
+    type= models.CharField(max_length=100)
+    is_active  = models.BooleanField(default=True)
+class BudgetType(models.Model):
+    type= models.CharField(max_length=100)
+    is_active  = models.BooleanField(default=True)
 
 class Office(models.Model):
     officeName = models.CharField(max_length = 200)
@@ -139,14 +145,30 @@ class YojanaDetails(models.Model):
     prj_type = models.ForeignKey(ProjectType, on_delete=models.RESTRICT)
     type_prj_ref = models.ForeignKey(TypeOfProject, on_delete=models.RESTRICT)
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)
-    affected_people = models.IntegerField()
+   
     prj_start_date = models.CharField(max_length=80)
     prj_start_date_en = models.DateField(default=timezone.now())
     prj_completion_date = models.CharField(max_length=80)
     prj_completion_date_en = models.DateField(default=timezone.now())
     is_multiyear = models.BooleanField(default=False)
-    prj_estimate = models.FloatField()
+    amount_of_work = models.FloatField(default=0.0)
+    unit_of_work = models.ForeignKey(UnitOfWork,on_delete=models.RESTRICT)
+    amt_from_palika = models.FloatField(default=0.0)
+    amt_from_palika_np = models.CharField(max_length=10)
+    amt_from_comittee = models.FloatField(default=0.0)
+    amt_from_comittee = models.CharField(max_length=10)
+    amt_from_gai_sasa = models.FloatField(default=0.0)
+    amt_from_gai_sasa_np = models.CharField(max_length=10)
+    prj_estimate = models.FloatField(default=0.0)
+    prj_estimate_np = models.FloatField(default=0.0)
     estimate_in_letters = models.CharField(max_length=100)
+    affected_household = models.IntegerField(default=0)
+    affected_household_np = models.CharField(max_length=5)
+    affected_community = models.IntegerField(default=0)
+    affected_community_np = models.CharField(max_length=10)
+    affected_people = models.IntegerField(default=0)
+    affected_people_np = models.CharField(max_length=10)
+
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
@@ -206,6 +228,9 @@ class Finalize(models.Model):
     message = models.TextField(max_length=200)
     baseString = models.TextField(max_length=500)
     similarity = models.FloatField(default=0.0)
+
+
+
 
 
 

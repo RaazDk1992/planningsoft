@@ -252,9 +252,21 @@ class YojanaRegForm(forms.ModelForm):
              'prj_start_date_en',
              'prj_completion_date',
              'prj_completion_date_en',
-             'affected_people',
+             'amt_from_palika',
+             'amt_from_palika_np',
+             'amt_from_comittee',
+             'amt_from_comittee_np',
+             'amt_from_gai_sasa',
+             'amt_from_gai_sasa_np',
              'prj_estimate',
-             'estimate_in_letters', 
+             'prj_estimate_np',
+             'estimate_in_letters',
+             'affected_household',
+             'affected_household_np', 
+             'affected_community',
+             'affected_community_np',
+             'affected_people',
+             'affected_people_np',
              'is_multiyear',
              'is_active' ,
         ]
@@ -269,6 +281,11 @@ class YojanaRegForm(forms.ModelForm):
              'type_prj_ref':'योजनाको प्रकृति',
              'prj_start_date':'योजना सुरु हुने मिति',
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
+             'amt_from_palika':'पालिका बाट',
+             'amt_from_comittee': 'समितिबाट',
+            
+             'amt_from_gai_sasa':'गै.स. स बाट',
+             'affected_community': 'लाभान्वित समुदाय',
              'affected_people': 'लाभान्वित जनसंख्या',
              'prj_estimate' : 'लागत ', 
              'estimate_in_letters': 'अक्षेरुपी रु.',
@@ -313,6 +330,24 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'id':'prj_complete_en'
             }),
+
+         'amt_from_palika': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
+            'amt_from_comittee': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
+             'amt_from_gai_sasa': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
+             'affected_community': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':''
+            }),
+             
             'affected_people': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या'

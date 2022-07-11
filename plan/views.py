@@ -28,7 +28,7 @@ def default(request):
     status_code = r.status_code
     response = r.text 
     """
-    doc = DocxTemplate("templates\\reports\\inv.docx")
+    doc = DocxTemplate("templates\\reports\\template.docx")
     context = { 'recipientName' : "World company" }
     doc.render(context)
     doc.save("templates\\reports\\generated_doc.docx")
