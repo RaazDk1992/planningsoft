@@ -145,7 +145,8 @@ class YojanaDetails(models.Model):
     prj_type = models.ForeignKey(ProjectType, on_delete=models.RESTRICT)
     type_prj_ref = models.ForeignKey(TypeOfProject, on_delete=models.RESTRICT)
     fy_ref = models.ForeignKey(FY,on_delete= models.RESTRICT)
-   
+    budget_type = models.ForeignKey(BudgetType, on_delete=models.RESTRICT)
+    plan_type = models.ForeignKey(YojanaType,on_delete=models.RESTRICT)
     prj_start_date = models.CharField(max_length=80)
     prj_start_date_en = models.DateField(default=timezone.now())
     prj_completion_date = models.CharField(max_length=80)
@@ -229,7 +230,12 @@ class Finalize(models.Model):
     baseString = models.TextField(max_length=500)
     similarity = models.FloatField(default=0.0)
 
-
+class Budet(models.Model):
+    fy_ref = models.ForeignKey(FY,on_delete=models.RESTRICT)
+    budget_type = models.ForeignKey(BudgetType, on_delete=models.RESTRICT)
+    plan_type = models.ForeignKey(YojanaType,on_delete=models.RESTRICT)
+    amount = models.FloatField(default=0.0)
+    is_active = models.BooleanField(default=True)
 
 
 

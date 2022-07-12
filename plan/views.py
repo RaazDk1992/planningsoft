@@ -241,8 +241,8 @@ def finalize(request):
           return render (request,'pages\\finalize.html',{'form':finalze})
     return redirect('validate')
 
-
-
+def budget(request):
+     return render (request,'pages\\budget.html')
 
 
 

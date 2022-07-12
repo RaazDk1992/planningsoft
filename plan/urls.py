@@ -21,6 +21,7 @@ urlpatterns = [
     path('designation/',views.designation,name="designation"),
     path('tippani/',views.addTippani,name="tippani"),
     path('finalize/',views.finalize,name="finalize"),
+    path('budget/',views.budget,name='budget'),
 
 
 

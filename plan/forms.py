@@ -267,6 +267,8 @@ class YojanaRegForm(forms.ModelForm):
              'affected_community_en',
              'affected_people',
              'affected_people_en',
+             'budget_type',
+             'plan_type',
              'is_multiyear',
              'is_active' ,
         ]
@@ -283,12 +285,13 @@ class YojanaRegForm(forms.ModelForm):
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
              'amt_from_palika':'पालिका बाट',
              'amt_from_comittee': 'समितिबाट',
-            
              'amt_from_gai_sasa':'गै.स. स बाट',
              'affected_community': 'लाभान्वित समुदाय',
              'affected_people': 'लाभान्वित जनसंख्या',
              'prj_estimate' : 'लागत ', 
              'estimate_in_letters': 'अक्षेरुपी रु.',
+             'budget_type':'बजेटको प्रकृति',
+             'plan_type':'चालु /पुंजीगत',
              'is_multiyear':  'बहुवर्षिय',
              'is_active': 'सक्रिय' ,
         }
@@ -319,7 +322,32 @@ class YojanaRegForm(forms.ModelForm):
              'prj_start_date_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
-                'id':'prj_start_en'
+                'id':'prj_start_en',
+                'hidden':True
+            }),
+            'amt_from_palika_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'prj_start_en',
+                'hidden':True
+            }),
+            'affected_household_en':forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'prj_start_en',
+                'hidden':True
+            }), 
+            'amt_from_comittee_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'prj_start_en',
+                'hidden':True
+            }),
+            'amt_from_gai_sasa_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'prj_start_en',
+                'hidden':True
             }),
              'prj_completion_date': forms.TextInput(attrs={
                 'class':'form-control col-sm-6 picker',
@@ -328,7 +356,8 @@ class YojanaRegForm(forms.ModelForm):
             }),
             'prj_completion_date_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'id':'prj_complete_en'
+                'id':'prj_complete_en',
+                'hidden':True
             }),
 
          'amt_from_palika': forms.TextInput(attrs={
