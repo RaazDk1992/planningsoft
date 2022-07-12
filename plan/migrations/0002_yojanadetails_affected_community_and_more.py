@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='affected_community_np',
+            name='affected_community_en',
             field=models.CharField(default='0', max_length=10),
             preserve_default=False,
         ),
@@ -30,13 +30,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='affected_household_np',
+            name='affected_household_en',
             field=models.CharField(default='0', max_length=5),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='affected_people_np',
+            name='affected_people_en',
             field=models.CharField(default='0', max_length=10),
             preserve_default=False,
         ),
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='amt_from_gai_sasa_np',
+            name='amt_from_gai_sasa_en',
             field=models.CharField(default='0', max_length=10),
             preserve_default=False,
         ),
@@ -64,13 +64,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='amt_from_palika_np',
+            name='amt_from_palika_en',
             field=models.CharField(default='0', max_length=10),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='yojanadetails',
-            name='prj_estimate_np',
+            name='prj_estimate_en',
             field=models.FloatField(default=0.0),
         ),
         migrations.AlterField(
