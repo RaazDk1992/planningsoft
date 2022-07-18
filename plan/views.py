@@ -251,5 +251,9 @@ def budget(request):
 
 def ward(request):
     wf = WardForm()
+    if request.POST:
+        wF = WodaForm(request.POST)
+        if wF.is_valid:
+            wF.save()
     return render (request,'pages\\budget.html',{'form':wf})
 
