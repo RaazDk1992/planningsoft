@@ -15,13 +15,14 @@ urlpatterns = [
     path('adduser/',views.addStaff,name="adduser"),
     path('addoffice/',views.addOffice,name="addoffice"),
     path('comittee/',views.Comittee,name="comittee"),
-    path('ward/',views.addWard,name="ward"),
+   # path('ward/',views.addWard,name="ward"),
     path('sectors/',views.sectors,name="sectors"),
     path('committeem/',views.committeeMembers,name="committeem"),
     path('designation/',views.designation,name="designation"),
     path('tippani/',views.addTippani,name="tippani"),
     path('finalize/',views.finalize,name="finalize"),
     path('budget/',views.budget,name='budget'),
+    path('ward/',views.ward,name='ward'),
 
 
 

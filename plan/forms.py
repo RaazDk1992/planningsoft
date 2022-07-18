@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
+from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Ward, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
 from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
@@ -551,4 +551,27 @@ class YojanaTypeForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'नाम '
             }),
+        }
+
+class WardForm(forms.ModelForm):
+    class Meta:
+        model = Ward
+        fields = [
+            'ward',
+            'ward_en'
+        ]
+        labels ={
+           'ward': 'वडा',
+           'ward_en': 'वडा अङ्ग्रजीमा'
+
+        }
+        widgets ={
+            'ward': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'वडा नं'
+            }),
+            'ward_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'वडा नं'
+            })
         }

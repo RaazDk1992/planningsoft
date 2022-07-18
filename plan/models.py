@@ -237,6 +237,10 @@ class Budget(models.Model):
     amount = models.FloatField(default=0.0)
     is_active = models.BooleanField(default=True)
 
+class Ward(models.Model):
+    ward = models.CharField(max_length=10)
+    ward_en = models.CharField(max_length=10)
+
 
 
 
