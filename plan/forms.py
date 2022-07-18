@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.db import models
-from .models import FY, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office
+from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
 from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
@@ -488,5 +488,67 @@ class FinalizeForm(forms.ModelForm):
                 'placeholder':'Type Message here.. ',
                 'id':'msg',
                 'hidden':True
+            }),
+        }
+class BudgetForm(forms.ModelForm):
+    class Meta:
+        model = Budget
+        fields = [
+            'fy_ref',
+            'budget_type', 
+            'plan_type', 
+            'amount',
+            'is_active'
+        ]
+        widgets = {
+            'fy_ref': forms.Select(attrs={
+                'class':'form-control col-sm-6'}),
+            'budget_type': forms.Select(attrs={
+                'class':'form-control col-sm-6',
+            }),
+            'plan_type': forms.Select(attrs={
+                'class':'form-control col-sm-6' }),
+            'amount': forms.TextInput(attrs={
+                'class':'form-control col-sm-6 picker',
+                'placeholder':'मिति छान्नुहोस् ',
+                'id':'date_picker_final'
+
+            })
+            }
+class BudgetTypeForm(forms.ModelForm):
+    class Meta:
+        model = BudgetType
+        fields = [
+            'type',
+            'is_active'
+        ]
+        labels ={
+           'type': 'प्रकार',
+           'is_active': 'सक्रिय'
+
+        }
+        widgets ={
+            'type': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'नाम '
+            }),
+        }
+
+class YojanaTypeForm(forms.ModelForm):
+    class Meta:
+        model = YojanaType
+        fields = [
+            'type',
+            'is_active'
+        ]
+        labels ={
+           'type': 'प्रकार',
+           'is_active': 'सक्रिय'
+
+        }
+        widgets ={
+            'type': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'नाम '
             }),
         }

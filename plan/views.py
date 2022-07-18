@@ -4,7 +4,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
+from .forms import BudgetTypeForm, CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm
 from .models import FY, ComitteeMembers, MajorSector, Office, YojanaDetails, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
@@ -22,16 +22,18 @@ def default(request):
             "http://api.sparrowsms.com/v2/sms/",
             params={'token' : 'v2_hUlUgdGo3G5CnSXjGENwguXBbWQ.UGCu',
                   'from'  : 'LekbeshiMun',
-                  'to'    : '9848288339',
-                  'text'  : 'SMS Message to be sent'})
+                  'to'    : '974590',
+                  'text'  : 'Hi Grish'})
+     
 
     status_code = r.status_code
     response = r.text 
     """
+    """
     doc = DocxTemplate("templates\\reports\\template.docx")
     context = { 'recipientName' : "World company" }
     doc.render(context)
-    doc.save("templates\\reports\\generated_doc.docx")
+    doc.save("templates\\reports\\generated_doc.docx") """
     return render(request,'login\\index.html',{'r':'apple'}) 
 
 
@@ -242,7 +244,8 @@ def finalize(request):
     return redirect('validate')
 
 def budget(request):
-     return render (request,'pages\\budget.html')
+    bf = BudgetTypeForm()
+    return render (request,'pages\\budget.html',{'form':bf})
 
 
 

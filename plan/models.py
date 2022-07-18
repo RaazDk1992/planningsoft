@@ -230,7 +230,7 @@ class Finalize(models.Model):
     baseString = models.TextField(max_length=500)
     similarity = models.FloatField(default=0.0)
 
-class Budet(models.Model):
+class Budget(models.Model):
     fy_ref = models.ForeignKey(FY,on_delete=models.RESTRICT)
     budget_type = models.ForeignKey(BudgetType, on_delete=models.RESTRICT)
     plan_type = models.ForeignKey(YojanaType,on_delete=models.RESTRICT)
