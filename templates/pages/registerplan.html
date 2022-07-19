@@ -71,14 +71,7 @@
 
                     {% block content%}
 
-                    {% for field in form %}
-
-                    <div class="form-group">
-                        
-                        {{field.label_tag }}{{ field }}
-                    </div>
-
-                    {% endfor %}
+                    {{ form.as_table }}
 
                 {% endblock %}
 

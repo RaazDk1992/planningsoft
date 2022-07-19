@@ -1,4 +1,6 @@
+from cProfile import label
 from dataclasses import fields
+from pickle import FALSE
 from pyexpat import model
 from django.db import models
 from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Ward, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
@@ -284,13 +286,23 @@ class YojanaRegForm(forms.ModelForm):
              'budget_type':'बजेटको प्रकृति',
              'plan_type':'चालु /पुंजीगत',
              'prj_start_date':'योजना सुरु हुने मिति',
+             'prj_start_date_en':'',
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
+             'prj_completion_date_en':'',
              'amt_from_palika':'पालिका बाट',
+             'amt_from_palika_en':'',
              'amt_from_comittee': 'समितिबाट',
+             'amt_from_comittee_en':'',
              'amt_from_gai_sasa':'गै.स. स बाट',
+             'amt_from_gai_sasa_en':'',
              'affected_community': 'लाभान्वित समुदाय',
+             'affected_community_en':'',
+             'affected_household':'लाभान्वित घरधुरी',
+             'affected_household_en':'',
              'affected_people': 'लाभान्वित जनसंख्या',
-             'prj_estimate' : 'लागत ', 
+             'affected_people_en':'',
+             'prj_estimate' : 'लागत ',
+             'prj_estimate_en' : '', 
              'estimate_in_letters': 'अक्षेरुपी रु.',
              'is_multiyear':  'बहुवर्षिय',
              'is_active': 'सक्रिय' ,
@@ -314,6 +326,7 @@ class YojanaRegForm(forms.ModelForm):
             'sector_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
+            'budget_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_start_date': forms.TextInput(attrs={
                 'class':'form-control col-sm-6 picker',
                 'placeholder':'मिति छान्नुहोस्',
@@ -334,19 +347,19 @@ class YojanaRegForm(forms.ModelForm):
             'affected_household_en':forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
-                'id':'prj_start_en',
+                'id':'affected_household_en',
                 'hidden':True
             }), 
             'amt_from_comittee_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
-                'id':'prj_start_en',
+                'id':'amt_from_comittee_en',
                 'hidden':True
             }),
             'amt_from_gai_sasa_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
-                'id':'prj_start_en',
+                'id':'amt_from_gai_sasa_en',
                 'hidden':True
             }),
              'prj_completion_date': forms.TextInput(attrs={
@@ -376,15 +389,30 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':''
             }),
-             
+             'affected_community_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'',
+                'hidden':True
+            }),
             'affected_people': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या'
+            }),
+             'affected_people_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'hidden':True
             }),
             'prj_estimate': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
                 'placeholder':'लागत रु ',
                 'id':'amt_number'
+            }),
+            'prj_estimate_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लागत रु ',
+                'id':'estimate_en',
+                'hidden':True
             }),
             'estimate_in_letters': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',

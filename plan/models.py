@@ -171,7 +171,6 @@ class YojanaDetails(models.Model):
     affected_community_en = models.CharField(max_length=10)
     affected_people = models.IntegerField(default=0)
     affected_people_en = models.CharField(max_length=10)
-
     is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
