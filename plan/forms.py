@@ -326,6 +326,7 @@ class YojanaRegForm(forms.ModelForm):
             'sector_ref':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
+            'plan_type': forms.Select(attrs={'class':'form-control col-sm-6'}),
             'budget_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_start_date': forms.TextInput(attrs={
                 'class':'form-control col-sm-6 picker',
@@ -343,6 +344,11 @@ class YojanaRegForm(forms.ModelForm):
                 'placeholder':'लाभान्वित जनसंख्या',
                 'id':'prj_start_en',
                 'hidden':True
+            }),
+            'affected_household':forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'लाभान्वित जनसंख्या',
+                'id':'affected_household',
             }),
             'affected_household_en':forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
@@ -375,15 +381,18 @@ class YojanaRegForm(forms.ModelForm):
 
          'amt_from_palika': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':''
+                'placeholder':'',
+                'id': 'amt_from_palika'
             }),
             'amt_from_comittee': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':''
+                'placeholder':'',
+                'id':'amt_from_comittee'
             }),
              'amt_from_gai_sasa': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
-                'placeholder':''
+                'placeholder':'',
+                'id':'amt_from_gai_sasa'
             }),
              'affected_community': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
@@ -418,7 +427,7 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'लागत रु ',
                 'id':'amt_ltrs'
-            }),
+            })
         }
 class MembersForm(forms.ModelForm):
     class Meta:
