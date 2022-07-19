@@ -281,6 +281,8 @@ class YojanaRegForm(forms.ModelForm):
              'sector_ref':'क्षेत्र',
              'prj_type':'योजनाको प्रकार',
              'type_prj_ref':'योजनाको प्रकृति',
+             'budget_type':'बजेटको प्रकृति',
+             'plan_type':'चालु /पुंजीगत',
              'prj_start_date':'योजना सुरु हुने मिति',
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
              'amt_from_palika':'पालिका बाट',
@@ -290,8 +292,6 @@ class YojanaRegForm(forms.ModelForm):
              'affected_people': 'लाभान्वित जनसंख्या',
              'prj_estimate' : 'लागत ', 
              'estimate_in_letters': 'अक्षेरुपी रु.',
-             'budget_type':'बजेटको प्रकृति',
-             'plan_type':'चालु /पुंजीगत',
              'is_multiyear':  'बहुवर्षिय',
              'is_active': 'सक्रिय' ,
         }
@@ -553,25 +553,3 @@ class YojanaTypeForm(forms.ModelForm):
             }),
         }
 
-class WardForm(forms.ModelForm):
-    class Meta:
-        model = Ward
-        fields = [
-            'ward',
-            'ward_en'
-        ]
-        labels ={
-           'ward': 'वडा',
-           'ward_en': 'वडा अङ्ग्रजीमा'
-
-        }
-        widgets ={
-            'ward': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'वडा नं'
-            }),
-            'ward_en': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'वडा नं'
-            })
-        }

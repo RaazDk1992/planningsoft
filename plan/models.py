@@ -46,6 +46,8 @@ class YojanaType(models.Model):
 class BudgetType(models.Model):
     type= models.CharField(max_length=100)
     is_active  = models.BooleanField(default=True)
+    def __str__(self):
+        return self.type
 
 class Office(models.Model):
     officeName = models.CharField(max_length = 200)
