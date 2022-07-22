@@ -192,6 +192,11 @@ yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
         $("#amt_ltrs").val('रु. '+v+" मात्र /-")
     });
 
+    $("#amt_from_palika").focusout(function(e){
+        $("#amt_from_palika_en").val(calendarFunctions.getNumberByNepaliNumber($(this).val()))
+        console.log(calendarFunctions.getNumberByNepaliNumber($(this).val()))
+    });
+
     });
 
     function inWords (num) {

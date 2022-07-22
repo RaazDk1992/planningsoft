@@ -23,7 +23,7 @@ urlpatterns = [
     path('finalize/',views.finalize,name="finalize"),
     path('budget/',views.budget,name='budget'),
     path('ward/',views.ward,name='ward'),
-
+    path('yojanatype/',views.yojanaType,name='yojanatype'),
 
 
 

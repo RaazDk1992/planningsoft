@@ -43,6 +43,8 @@ def comitteemembers_meetings_file_path(obj, fname):
 class YojanaType(models.Model):
     type= models.CharField(max_length=100)
     is_active  = models.BooleanField(default=True)
+    def __str__(self):
+        return self.type
 class BudgetType(models.Model):
     type= models.CharField(max_length=100)
     is_active  = models.BooleanField(default=True)
