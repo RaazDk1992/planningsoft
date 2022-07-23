@@ -239,6 +239,7 @@ class TypeOfProjectForm(forms.ModelForm):
  
 
 class YojanaRegForm(forms.ModelForm):
+   
     class Meta:
         model = YojanaDetails
         fields = [

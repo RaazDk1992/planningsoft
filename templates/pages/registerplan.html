@@ -162,6 +162,15 @@
        
     });
 
+    $("#amt_number").focusin(function(e){
+        t =0;
+        $('.o').each(function() { t += calendarFunctions.getNumberByNepaliNumber($(this).val()) });
+        $(this).val( calendarFunctions.getNepaliNumber(t))
+        v = inWords(t);
+        $("#amt_ltrs").val('रु. '+v+" मात्र /-")
+
+    });
+
         $(".picker").nepaliDatePicker({
                                         dateFormat: "%y-%m-%d",
                                          closeOnDateSelect: true
@@ -194,13 +203,6 @@ yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
     mme = date_en.getMonth()+1
      $("#prj_complete_en").val(date_en.getFullYear()+"-"+mme+"-"+date_en.getDate())
                                                 });
-
-
-    $("#amt_number").focusout(function(e){
-
-        v = inWords($("#amt_number").val());
-        $("#amt_ltrs").val('रु. '+v+" मात्र /-")
-    });
 
     });
 
