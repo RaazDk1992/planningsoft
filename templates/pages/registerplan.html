@@ -152,6 +152,16 @@
 
 <script>
     $(document).ready(function(){
+        $(".o").focusout(function(e){
+       // $("#amt_from_palika_en").val(calendarFunctions.getNumberByNepaliNumber($(this).val()))
+
+        i = jQuery(this).attr("id");
+        t = i+"_en"
+        v = jQuery(this).val()
+        $("#"+t).val(calendarFunctions.getNumberByNepaliNumber('१००'))
+       
+    });
+
         $(".picker").nepaliDatePicker({
                                         dateFormat: "%y-%m-%d",
                                          closeOnDateSelect: true
@@ -190,11 +200,6 @@ yr =  calendarFunctions.getNumberByNepaliNumber(tmp[0])
 
         v = inWords($("#amt_number").val());
         $("#amt_ltrs").val('रु. '+v+" मात्र /-")
-    });
-
-    $("#amt_from_palika").focusout(function(e){
-        $("#amt_from_palika_en").val(calendarFunctions.getNumberByNepaliNumber($(this).val()))
-        console.log(calendarFunctions.getNumberByNepaliNumber($(this).val()))
     });
 
     });

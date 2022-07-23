@@ -343,10 +343,10 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
                 'id':'amt_from_palika_en',
-                'hidden':True
+                
             }),
             'affected_household':forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
+                'class':'form-control col-sm-6 o',
                 'placeholder':'लाभान्वित जनसंख्या',
                 'id':'affected_household',
             }),
@@ -380,22 +380,22 @@ class YojanaRegForm(forms.ModelForm):
             }),
 
          'amt_from_palika': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
+                'class':'form-control col-sm-6 o',
                 'placeholder':'',
                 'id': 'amt_from_palika'
             }),
             'amt_from_comittee': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
+                'class':'form-control col-sm-6 o',
                 'placeholder':'',
                 'id':'amt_from_comittee'
             }),
              'amt_from_gai_sasa': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
+                'class':'form-control col-sm-6 o',
                 'placeholder':'',
                 'id':'amt_from_gai_sasa'
             }),
              'affected_community': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
+                'class':'form-control col-sm-6 o',
                 'placeholder':''
             }),
              'affected_community_en': forms.TextInput(attrs={
@@ -404,8 +404,8 @@ class YojanaRegForm(forms.ModelForm):
                 'hidden':True
             }),
             'affected_people': forms.TextInput(attrs={
-                'class':'form-control col-sm-6',
-                'placeholder':'लाभान्वित जनसंख्या'
+                'class':'form-control col-sm-6 o',
+                'placeholder':'लाभान्वित जनसंख्या',
             }),
              'affected_people_en': forms.TextInput(attrs={
                 'class':'form-control col-sm-6',
