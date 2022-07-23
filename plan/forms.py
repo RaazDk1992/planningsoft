@@ -343,7 +343,7 @@ class YojanaRegForm(forms.ModelForm):
                 'class':'form-control col-sm-6',
                 'placeholder':'लाभान्वित जनसंख्या',
                 'id':'amt_from_palika_en',
-                
+                'hidden':True
             }),
             'affected_household':forms.TextInput(attrs={
                 'class':'form-control col-sm-6 o',
