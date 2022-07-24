@@ -4,7 +4,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 import requests
 import logging
-from .forms import BudgetForm, BudgetTypeForm, CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm,WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm, YojanaTypeForm
+from .forms import BudgetForm, BudgetTypeForm, CommitteeForm, DesignationForm, DocForm, FYform, FinalizeForm, MajorSectorsForm, MembersForm, OfficeForm, TippaniForm, UnitsForm,WodaForm,YojanaRegForm,ProjectTypesForms,TypeOfProjectForm, YojanaTypeForm
 from .models import FY, ComitteeMembers, MajorSector, Office, YojanaDetails, count
 from docxtpl import DocxTemplate
 from django.forms import modelformset_factory
@@ -267,4 +267,12 @@ def ward(request):
         if wF.is_valid:
             wF.save()
     return render (request,'pages\\budget.html',{'form':wf})
+
+def units(request):
+    uf = UnitsForm()
+    if request.POST:
+        uF = UnitsForm(request.POST)
+        if uF.is_valid:
+            uF.save()
+    return render (request,'pages\\budget.html',{'form':uf})
 

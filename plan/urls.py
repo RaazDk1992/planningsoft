@@ -24,6 +24,7 @@ urlpatterns = [
     path('budget/',views.budget,name='budget'),
     path('ward/',views.ward,name='ward'),
     path('yojanatype/',views.yojanaType,name='yojanatype'),
+    path('units/',views.units,name='units'),
 
 
 

@@ -3,7 +3,7 @@ from dataclasses import fields
 from pickle import FALSE
 from pyexpat import model
 from django.db import models
-from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, Ward, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
+from .models import FY, Budget, BudgetType, Comittee, ComitteeMembers, Designation, Doc, Finalize, MajorSector, Tippani, UnitOfWork, Ward, Woda,YojanaDetails,ProjectType,TypeOfProject,Office, YojanaType
 from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
@@ -608,4 +608,31 @@ class YojanaTypeForm(forms.ModelForm):
                 'placeholder':'नाम '
             }),
         }
+
+class UnitsForm(forms.ModelForm):
+    class Meta:
+        model = UnitOfWork
+        fields = [
+            'unit_name',
+            'unit_name_en'
+        ]
+        labels ={
+           'unit_name': 'ईकाई',
+           'unit_name_en': 'ईकाई अङ्ग्रेजीमा'
+
+        }
+        widgets ={
+            'unit_name': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'नाम '
+            }),
+            'unit_name_en': forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'नाम '
+            }),
+        }
+
+    
+
+    
 
