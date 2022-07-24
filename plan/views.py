@@ -13,8 +13,8 @@ from django.forms import modelformset_factory
 # Create your views here.
 
 def adminDashBoard(request):
-    
-    return render(request,'pages\\admindashboard.html') 
+    data = YojanaDetails.objects.all()
+    return render(request,'pages\\admindashboard.html',{'data':data}) 
 
 def default(request):
     """

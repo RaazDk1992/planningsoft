@@ -245,6 +245,11 @@ class Ward(models.Model):
     ward = models.CharField(max_length=10)
     ward_en = models.CharField(max_length=10)
 
+class Amount(models.Model):
+    budget_type = models.ForeignKey(BudgetType,on_delete=models.RESTRICT)
+    plan_type = models.ForeignKey(YojanaType, on_delete=models.RESTRICT)
+    amount  = models.FloatField()
+
 
 
 

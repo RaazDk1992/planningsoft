@@ -68,27 +68,19 @@
                    <table class="table table-bordered" id="project_lists_admin">
                     <thead>
                       <tr>
-                        <th>योजनाको नाम</th>
+                        <th style="width: 150%;">योजनाको नाम</th>
                         <th>हर्नुहोस्</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                        {% for x in data%}
                       <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
+                        <td>{{x.prj_name}}</td>
+                        <td><a href=""><i class="fas fa-eye"></i></a></td>
+                        <td></td>
                       </tr>
-                      <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                      </tr>
+                        {% endfor %}
                     </tbody>
                   </table>
                    
