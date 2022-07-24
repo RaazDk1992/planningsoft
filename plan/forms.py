@@ -255,6 +255,9 @@ class YojanaRegForm(forms.ModelForm):
              'prj_start_date_en',
              'prj_completion_date',
              'prj_completion_date_en',
+             'amount_of_work',
+             'amount_of_work_en',
+             'unit_of_work',
              'amt_from_palika',
              'amt_from_palika_en',
              'amt_from_comittee',
@@ -290,6 +293,9 @@ class YojanaRegForm(forms.ModelForm):
              'prj_start_date_en':'',
              'prj_completion_date':'योजना सम्पन्न हुने मिति',
              'prj_completion_date_en':'',
+             'amount_of_work': 'संख्या/ परिमाण',
+             'amount_of_work_en': '',
+             'unit_of_work': 'ईकाई',
              'amt_from_palika':'पालिका बाट',
              'amt_from_palika_en':'',
              'amt_from_comittee': 'समितिबाट',
@@ -329,6 +335,18 @@ class YojanaRegForm(forms.ModelForm):
             'type_prj_ref': forms.Select(attrs={'class':'form-control col-sm-6'}),
             'plan_type': forms.Select(attrs={'class':'form-control col-sm-6'}),
             'budget_type':forms.Select(attrs={'class':'form-control col-sm-6'}),
+            'amount_of_work':forms.TextInput(attrs={
+                'class':'form-control col-sm-6 o',
+                'placeholder':'कार्य परिमाण',
+                'id':'amount_of_work'
+            }),
+            'amount_of_work_en':forms.TextInput(attrs={
+                'class':'form-control col-sm-6',
+                'placeholder':'कार्य परिमाण',
+                'id':'amount_of_work_en',
+                'hidden':True
+            }),
+            'unit_of_work':forms.Select(attrs={'class':'form-control col-sm-6'}),
             'prj_start_date': forms.TextInput(attrs={
                 'class':'form-control col-sm-6 picker',
                 'placeholder':'मिति छान्नुहोस्',
